@@ -1,0 +1,8 @@
+v0 = malloc 40
+f_main [0][1]
+loadaddr v0 t0
+s11 = 1
+t0[0] = s11
+a0 = 0
+return
+end f_main

@@ -1,0 +1,186 @@
+f_atoi_ [1][44]
+t0 = 0
+t1 = 1
+t2 = 0
+l0:
+s11 = 4
+t3 = t2 * s11
+s11 = a0 + t3
+t4 = s11[0]
+s11 = 32
+t3 = t4 == s11
+s11 = 0
+if t3 == s11 goto l1
+s11 = 1
+t3 = t2 + s11
+t2 = t3
+goto l0
+l1:
+s11 = 4
+t3 = t2 * s11
+s11 = a0 + t3
+t4 = s11[0]
+s11 = 43
+t3 = t4 == s11
+s11 = 0
+if t3 != s11 goto l2
+s11 = 4
+t3 = t2 * s11
+s11 = a0 + t3
+t4 = s11[0]
+s11 = 45
+t3 = t4 == s11
+s11 = 0
+if t3 != s11 goto l2
+t3 = 0
+goto l3
+l2:
+t3 = 1
+l3:
+s11 = 0
+if t3 == s11 goto l5
+s11 = 4
+t3 = t2 * s11
+s11 = a0 + t3
+t4 = s11[0]
+s11 = 45
+t3 = t4 == s11
+s11 = 0
+if t3 == s11 goto l4
+t1 = -1
+l4:
+s11 = 1
+t3 = t2 + s11
+t2 = t3
+goto l9
+l5:
+s11 = 4
+t3 = t2 * s11
+s11 = a0 + t3
+t4 = s11[0]
+s11 = 48
+t3 = t4 < s11
+s11 = 0
+if t3 != s11 goto l6
+s11 = 4
+t3 = t2 * s11
+s11 = a0 + t3
+t4 = s11[0]
+s11 = 57
+t3 = t4 > s11
+s11 = 0
+if t3 != s11 goto l6
+t3 = 0
+goto l7
+l6:
+t3 = 1
+l7:
+s11 = 0
+if t3 == s11 goto l8
+t0 = 2147483647
+a0 = t0
+return
+l8:
+l9:
+l10:
+s11 = 4
+t3 = t2 * s11
+s11 = a0 + t3
+t4 = s11[0]
+s11 = 0
+t3 = t4 != s11
+s11 = 0
+if t3 == s11 goto l11
+s11 = 4
+t3 = t2 * s11
+s11 = a0 + t3
+t4 = s11[0]
+s11 = 47
+t3 = t4 > s11
+s11 = 0
+if t3 == s11 goto l11
+t3 = 1
+goto l12
+l11:
+t3 = 0
+l12:
+s11 = 0
+if t3 == s11 goto l13
+s11 = 4
+t3 = t2 * s11
+s11 = a0 + t3
+t4 = s11[0]
+s11 = 58
+t3 = t4 < s11
+s11 = 0
+if t3 == s11 goto l13
+t3 = 1
+goto l14
+l13:
+t3 = 0
+l14:
+s11 = 0
+if t3 == s11 goto l15
+s11 = 10
+t3 = t0 * s11
+s11 = 4
+t4 = t2 * s11
+s11 = a0 + t4
+t5 = s11[0]
+t4 = t3 + t5
+s11 = 48
+t3 = t4 - s11
+t0 = t3
+s11 = 1
+t3 = t2 + s11
+t2 = t3
+goto l10
+l15:
+t2 = t0 * t1
+a0 = t2
+return
+end f_atoi_
+f_main [0][511]
+t0 = 0
+t1 = 0
+l16:
+s11 = 10
+t2 = t0 != s11
+s11 = 0
+if t2 == s11 goto l17
+store t0 500
+store t1 501
+call f_getch
+t2 = a0
+load 500 t0
+load 501 t1
+t0 = t2
+s11 = 4
+t2 = t1 * s11
+loadaddr 0 t3
+s11 = t3 + t2
+s11[0] = t0
+s11 = 1
+t0 = t1 + s11
+t1 = t0
+goto l16
+l17:
+s11 = 4
+t0 = t1 * s11
+s11 = t3 + t0
+s11[0] = 0
+s11 = 0
+t0 = t3 + s11
+t2 = t0
+a0 = t2
+store t1 501
+call f_atoi_
+t0 = a0
+load 501 t1
+t1 = t0
+t0 = t1
+a0 = t0
+call f_putint
+a0 = 0
+return
+end f_main

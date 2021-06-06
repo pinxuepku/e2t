@@ -1,0 +1,44 @@
+f_main [0][25]
+t0 = 5
+t1 = 5
+t2 = 1
+t3 = -2
+s11 = 1
+t4 = t3 * s11
+s11 = 2
+t5 = t4 / s11
+t4 = t0 - t1
+t6 = t5 + t4
+s11 = 3
+t4 = t2 + s11
+t5 = - t4
+s11 = 2
+t4 = t5 % s11
+t5 = t6 - t4
+t4 = t5
+t5 = t4
+a0 = t5
+call f_putint
+s11 = 2
+t5 = t3 % s11
+s11 = 67
+t3 = t5 + s11
+t5 = t0 - t1
+t0 = - t5
+t1 = t3 + t0
+s11 = 2
+t0 = t2 + s11
+s11 = 2
+t2 = t0 % s11
+t0 = - t2
+t2 = t1 - t0
+t4 = t2
+s11 = 3
+t0 = t4 + s11
+t4 = t0
+t0 = t4
+a0 = t0
+call f_putint
+a0 = 0
+return
+end f_main

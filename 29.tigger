@@ -1,0 +1,158 @@
+v0 = 0
+v1 = 0
+v2 = 0
+v3 = 0
+f_EightWhile [0][38]
+load v0 t0
+load v1 t1
+load v2 t2
+load v3 t3
+t4 = 5
+t5 = 6
+t6 = 7
+s0 = 10
+l0:
+s11 = 20
+s1 = t4 < s11
+s11 = 0
+if s1 == s11 goto l15
+s11 = 3
+s1 = t4 + s11
+t4 = s1
+l1:
+s11 = 10
+s1 = t5 < s11
+s11 = 0
+if s1 == s11 goto l14
+s11 = 1
+s1 = t5 + s11
+t5 = s1
+l2:
+s11 = 7
+s1 = t6 == s11
+s11 = 0
+if s1 == s11 goto l13
+s11 = 1
+s1 = t6 - s11
+t6 = s1
+l3:
+s11 = 20
+s1 = s0 < s11
+s11 = 0
+if s1 == s11 goto l12
+s11 = 3
+s1 = s0 + s11
+s0 = s1
+l4:
+s11 = 1
+s1 = t3 > s11
+s11 = 0
+if s1 == s11 goto l11
+s11 = 1
+s1 = t3 - s11
+t3 = s1
+loadaddr v3 s11
+s11[0] = t3
+l5:
+s11 = 2
+s1 = t2 > s11
+s11 = 0
+if s1 == s11 goto l10
+s11 = 2
+s1 = t2 - s11
+t2 = s1
+loadaddr v2 s11
+s11[0] = t2
+l6:
+s11 = 3
+s1 = t0 < s11
+s11 = 0
+if s1 == s11 goto l9
+s11 = 10
+s1 = t0 + s11
+t0 = s1
+loadaddr v0 s11
+s11[0] = t0
+l7:
+s11 = 10
+s1 = t1 < s11
+s11 = 0
+if s1 == s11 goto l8
+s11 = 8
+s1 = t1 + s11
+t1 = s1
+loadaddr v1 s11
+s11[0] = t1
+goto l7
+l8:
+s11 = 1
+s1 = t1 - s11
+t1 = s1
+loadaddr v1 s11
+s11[0] = t1
+goto l6
+l9:
+s11 = 8
+s1 = t0 - s11
+t0 = s1
+loadaddr v0 s11
+s11[0] = t0
+goto l5
+l10:
+s11 = 1
+s1 = t2 + s11
+t2 = s1
+loadaddr v2 s11
+s11[0] = t2
+goto l4
+l11:
+s11 = 1
+t2 = t3 + s11
+t3 = t2
+loadaddr v3 s11
+s11[0] = t3
+goto l3
+l12:
+s11 = 1
+t2 = s0 - s11
+s0 = t2
+goto l2
+l13:
+s11 = 1
+t2 = t6 + s11
+t6 = t2
+goto l1
+l14:
+s11 = 2
+t2 = t5 - s11
+t5 = t2
+goto l0
+l15:
+t2 = t5 + s0
+t5 = t4 + t2
+t2 = t5 + t6
+t4 = t3 + s0
+t3 = t4 - t0
+t0 = t3 + t1
+t1 = t2 - t0
+a0 = t1
+return
+end f_EightWhile
+f_main [0][5]
+t0 = 1
+loadaddr v0 s11
+s11[0] = t0
+t0 = 2
+loadaddr v1 s11
+s11[0] = t0
+t0 = 4
+loadaddr v3 s11
+s11[0] = t0
+t0 = 6
+loadaddr v2 s11
+s11[0] = t0
+call f_EightWhile
+t0 = a0
+a0 = t0
+return
+end f_main

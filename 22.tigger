@@ -1,0 +1,22 @@
+f_ifElse [0][3]
+t0 = 5
+s11 = 5
+t1 = t0 == s11
+s11 = 0
+if t1 == s11 goto l0
+t0 = 25
+goto l1
+l0:
+s11 = 2
+t1 = t0 * s11
+t0 = t1
+l1:
+a0 = t0
+return
+end f_ifElse
+f_main [0][1]
+call f_ifElse
+t0 = a0
+a0 = t0
+return
+end f_main

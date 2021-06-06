@@ -1,0 +1,27 @@
+f_main [0][13]
+t0 = 56
+t1 = 12
+loadaddr 2 t2
+s11 = 1
+t2[0] = s11
+s11 = 2
+t2[4] = s11
+s11 = 3
+t2[8] = s11
+t3 = t0 % t1
+t0 = t3 + t1
+s11 = 5
+t1 = t0 / s11
+s11 = 2
+t0 = t1 - s11
+s11 = 4
+t1 = t0 * s11
+s11 = t2 + t1
+t0 = s11[0]
+t1 = t0
+t0 = t1
+a0 = t0
+call f_putint
+a0 = 0
+return
+end f_main

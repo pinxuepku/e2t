@@ -1,0 +1,31 @@
+f_ifElseElseIf [0][5]
+t0 = 66
+t1 = 8923
+s11 = 5
+t2 = t0 == s11
+s11 = 0
+if t2 == s11 goto l0
+t1 = 25
+goto l3
+l0:
+s11 = 10
+t2 = t0 == s11
+s11 = 0
+if t2 == s11 goto l1
+t1 = 42
+goto l2
+l1:
+s11 = 2
+t2 = t0 * s11
+t1 = t2
+l2:
+l3:
+a0 = t1
+return
+end f_ifElseElseIf
+f_main [0][1]
+call f_ifElseElseIf
+t0 = a0
+a0 = t0
+return
+end f_main

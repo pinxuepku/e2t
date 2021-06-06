@@ -1,0 +1,18 @@
+f_main [0][11]
+t0 = 20
+t1 = 5
+t2 = 6
+t3 = -4
+t4 = t2 * t3
+t2 = t0 + t4
+t4 = t0 + t3
+t3 = t1 % t4
+t1 = t3 / t0
+t3 = t2 - t1
+t0 = t3
+t1 = t0
+a0 = t1
+call f_putint
+a0 = 0
+return
+end f_main

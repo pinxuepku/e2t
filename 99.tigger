@@ -1,0 +1,670 @@
+f_func [2][146]
+t0 = a0 + a1
+t1 = t0
+t0 = 1
+t2 = 2
+t3 = 3
+t4 = 4
+s11 = 1
+t5 = s11 + t0
+t6 = t5
+s11 = 2
+t5 = s11 + t2
+s0 = t5
+s11 = 3
+t5 = s11 + t3
+s1 = t5
+s11 = 4
+t5 = s11 + t4
+s2 = t5
+s11 = 1
+t5 = s11 + t6
+s3 = t5
+s11 = 2
+t5 = s11 + s0
+s4 = t5
+s11 = 3
+t5 = s11 + s1
+s5 = t5
+s11 = 4
+t5 = s11 + s2
+s6 = t5
+s11 = 1
+t5 = s11 + s3
+s7 = t5
+s11 = 2
+t5 = s11 + s4
+s8 = t5
+loadaddr 17 s11
+s11[0] = s8
+load 17 t5
+s11 = 3
+s8 = s11 + s5
+loadaddr 50 s11
+s11[0] = s8
+load 50 s9
+s8 = s9
+loadaddr 18 s11
+s11[0] = s8
+s11 = 4
+s8 = s11 + s6
+loadaddr 51 s11
+s11[0] = s8
+load 51 s9
+s8 = s9
+loadaddr 19 s11
+s11[0] = s8
+s11 = 1
+s8 = s11 + s7
+loadaddr 52 s11
+s11[0] = s8
+load 52 s9
+s8 = s9
+loadaddr 20 s11
+s11[0] = s8
+s11 = 2
+s8 = s11 + t5
+loadaddr 53 s11
+s11[0] = s8
+load 53 s9
+s8 = s9
+loadaddr 21 s11
+s11[0] = s8
+load 18 s9
+s11 = 3
+s8 = s11 + s9
+loadaddr 54 s11
+s11[0] = s8
+load 54 s9
+s8 = s9
+loadaddr 22 s11
+s11[0] = s8
+load 19 s9
+s11 = 4
+s8 = s11 + s9
+loadaddr 55 s11
+s11[0] = s8
+load 55 s9
+s8 = s9
+loadaddr 23 s11
+s11[0] = s8
+load 20 s9
+s11 = 1
+s8 = s11 + s9
+loadaddr 56 s11
+s11[0] = s8
+load 56 s9
+s8 = s9
+loadaddr 24 s11
+s11[0] = s8
+load 21 s9
+s11 = 2
+s8 = s11 + s9
+loadaddr 57 s11
+s11[0] = s8
+load 57 s9
+s8 = s9
+loadaddr 25 s11
+s11[0] = s8
+load 22 s9
+s11 = 3
+s8 = s11 + s9
+loadaddr 58 s11
+s11[0] = s8
+load 58 s9
+s8 = s9
+loadaddr 26 s11
+s11[0] = s8
+load 23 s9
+s11 = 4
+s8 = s11 + s9
+loadaddr 59 s11
+s11[0] = s8
+load 59 s9
+s8 = s9
+loadaddr 27 s11
+s11[0] = s8
+load 24 s9
+s11 = 1
+s8 = s11 + s9
+loadaddr 60 s11
+s11[0] = s8
+load 60 s9
+s8 = s9
+loadaddr 28 s11
+s11[0] = s8
+load 25 s9
+s11 = 2
+s8 = s11 + s9
+loadaddr 61 s11
+s11[0] = s8
+load 61 s9
+s8 = s9
+loadaddr 29 s11
+s11[0] = s8
+load 26 s9
+s11 = 3
+s8 = s11 + s9
+loadaddr 62 s11
+s11[0] = s8
+load 62 s9
+s8 = s9
+loadaddr 30 s11
+s11[0] = s8
+load 27 s9
+s11 = 4
+s8 = s11 + s9
+loadaddr 63 s11
+s11[0] = s8
+load 63 s9
+s8 = s9
+loadaddr 31 s11
+s11[0] = s8
+load 28 s9
+s11 = 1
+s8 = s11 + s9
+loadaddr 64 s11
+s11[0] = s8
+load 64 s9
+s8 = s9
+loadaddr 32 s11
+s11[0] = s8
+load 29 s9
+s11 = 2
+s8 = s11 + s9
+loadaddr 65 s11
+s11[0] = s8
+load 65 s9
+s8 = s9
+loadaddr 33 s11
+s11[0] = s8
+load 30 s9
+s11 = 3
+s8 = s11 + s9
+loadaddr 66 s11
+s11[0] = s8
+load 66 s9
+s8 = s9
+loadaddr 34 s11
+s11[0] = s8
+load 31 s9
+s11 = 4
+s8 = s11 + s9
+loadaddr 67 s11
+s11[0] = s8
+load 67 s9
+s8 = s9
+loadaddr 35 s11
+s11[0] = s8
+load 32 s9
+s11 = 1
+s8 = s11 + s9
+loadaddr 68 s11
+s11[0] = s8
+load 68 s9
+s8 = s9
+loadaddr 36 s11
+s11[0] = s8
+load 33 s9
+s11 = 2
+s8 = s11 + s9
+loadaddr 69 s11
+s11[0] = s8
+load 69 s9
+s8 = s9
+loadaddr 37 s11
+s11[0] = s8
+load 34 s9
+s11 = 3
+s8 = s11 + s9
+loadaddr 70 s11
+s11[0] = s8
+load 70 s9
+s8 = s9
+loadaddr 38 s11
+s11[0] = s8
+load 35 s9
+s11 = 4
+s8 = s11 + s9
+loadaddr 71 s11
+s11[0] = s8
+load 71 s9
+s8 = s9
+loadaddr 39 s11
+s11[0] = s8
+s8 = a0 - a1
+loadaddr 72 s11
+s11[0] = s8
+load 72 s9
+s11 = 10
+s8 = s9 + s11
+loadaddr 73 s11
+s11[0] = s8
+load 73 s8
+t1 = s8
+load 32 s9
+s11 = 1
+s8 = s11 + s9
+loadaddr 74 s11
+s11[0] = s8
+load 74 s9
+s8 = s9
+loadaddr 36 s11
+s11[0] = s8
+load 33 s9
+s11 = 2
+s8 = s11 + s9
+loadaddr 75 s11
+s11[0] = s8
+load 75 s9
+s8 = s9
+loadaddr 37 s11
+s11[0] = s8
+load 34 s9
+s11 = 3
+s8 = s11 + s9
+loadaddr 76 s11
+s11[0] = s8
+load 76 s9
+s8 = s9
+loadaddr 38 s11
+s11[0] = s8
+load 35 s9
+s11 = 4
+s8 = s11 + s9
+loadaddr 77 s11
+s11[0] = s8
+load 77 s9
+s8 = s9
+loadaddr 39 s11
+s11[0] = s8
+load 28 s9
+s11 = 1
+s8 = s11 + s9
+loadaddr 78 s11
+s11[0] = s8
+load 78 s9
+s8 = s9
+loadaddr 32 s11
+s11[0] = s8
+load 29 s9
+s11 = 2
+s8 = s11 + s9
+loadaddr 79 s11
+s11[0] = s8
+load 79 s9
+s8 = s9
+loadaddr 33 s11
+s11[0] = s8
+load 30 s9
+s11 = 3
+s8 = s11 + s9
+loadaddr 80 s11
+s11[0] = s8
+load 80 s9
+s8 = s9
+loadaddr 34 s11
+s11[0] = s8
+load 31 s9
+s11 = 4
+s8 = s11 + s9
+loadaddr 81 s11
+s11[0] = s8
+load 81 s9
+s8 = s9
+loadaddr 35 s11
+s11[0] = s8
+load 24 s9
+s11 = 1
+s8 = s11 + s9
+loadaddr 82 s11
+s11[0] = s8
+load 82 s9
+s8 = s9
+loadaddr 28 s11
+s11[0] = s8
+load 25 s9
+s11 = 2
+s8 = s11 + s9
+loadaddr 83 s11
+s11[0] = s8
+load 83 s9
+s8 = s9
+loadaddr 29 s11
+s11[0] = s8
+load 26 s9
+s11 = 3
+s8 = s11 + s9
+loadaddr 84 s11
+s11[0] = s8
+load 84 s9
+s8 = s9
+loadaddr 30 s11
+s11[0] = s8
+load 27 s9
+s11 = 4
+s8 = s11 + s9
+loadaddr 85 s11
+s11[0] = s8
+load 85 s9
+s8 = s9
+loadaddr 31 s11
+s11[0] = s8
+load 20 s9
+s11 = 1
+s8 = s11 + s9
+loadaddr 86 s11
+s11[0] = s8
+load 86 s9
+s8 = s9
+loadaddr 24 s11
+s11[0] = s8
+load 21 s9
+s11 = 2
+s8 = s11 + s9
+loadaddr 87 s11
+s11[0] = s8
+load 87 s9
+s8 = s9
+loadaddr 25 s11
+s11[0] = s8
+load 22 s9
+s11 = 3
+s8 = s11 + s9
+loadaddr 88 s11
+s11[0] = s8
+load 88 s9
+s8 = s9
+loadaddr 26 s11
+s11[0] = s8
+load 23 s9
+s11 = 4
+s8 = s11 + s9
+loadaddr 89 s11
+s11[0] = s8
+load 89 s9
+s8 = s9
+loadaddr 27 s11
+s11[0] = s8
+s11 = 1
+s8 = s11 + s7
+loadaddr 90 s11
+s11[0] = s8
+load 90 s9
+s8 = s9
+loadaddr 20 s11
+s11[0] = s8
+s11 = 2
+s8 = s11 + t5
+loadaddr 91 s11
+s11[0] = s8
+load 91 s9
+s8 = s9
+loadaddr 21 s11
+s11[0] = s8
+load 18 s9
+s11 = 3
+s8 = s11 + s9
+loadaddr 92 s11
+s11[0] = s8
+load 92 s9
+s8 = s9
+loadaddr 22 s11
+s11[0] = s8
+load 19 s9
+s11 = 4
+s8 = s11 + s9
+loadaddr 93 s11
+s11[0] = s8
+load 93 s9
+s8 = s9
+loadaddr 23 s11
+s11[0] = s8
+s11 = 1
+s8 = s11 + s3
+loadaddr 94 s11
+s11[0] = s8
+load 94 s8
+s7 = s8
+s11 = 2
+s8 = s11 + s4
+loadaddr 95 s11
+s11[0] = s8
+load 95 s8
+t5 = s8
+s11 = 3
+s8 = s11 + s5
+loadaddr 96 s11
+s11[0] = s8
+load 96 s9
+s8 = s9
+loadaddr 18 s11
+s11[0] = s8
+s11 = 4
+s8 = s11 + s6
+loadaddr 97 s11
+s11[0] = s8
+load 97 s9
+s8 = s9
+loadaddr 19 s11
+s11[0] = s8
+s11 = 1
+s8 = s11 + t6
+loadaddr 98 s11
+s11[0] = s8
+load 98 s8
+s3 = s8
+s11 = 2
+s8 = s11 + s0
+loadaddr 99 s11
+s11[0] = s8
+load 99 s8
+s4 = s8
+s11 = 3
+s8 = s11 + s1
+loadaddr 100 s11
+s11[0] = s8
+load 100 s8
+s5 = s8
+s11 = 4
+s8 = s11 + s2
+loadaddr 101 s11
+s11[0] = s8
+load 101 s8
+s6 = s8
+s11 = 1
+s8 = s11 + t0
+loadaddr 102 s11
+s11[0] = s8
+load 102 s8
+t6 = s8
+s11 = 2
+s8 = s11 + t2
+loadaddr 103 s11
+s11[0] = s8
+load 103 s8
+s0 = s8
+s11 = 3
+s8 = s11 + t3
+loadaddr 104 s11
+s11[0] = s8
+load 104 s8
+s1 = s8
+s11 = 4
+s8 = s11 + t4
+loadaddr 105 s11
+s11[0] = s8
+load 105 s8
+s2 = s8
+load 36 s9
+s11 = 1
+s8 = s11 + s9
+loadaddr 106 s11
+s11[0] = s8
+load 106 s8
+t0 = s8
+load 37 s9
+s11 = 2
+s8 = s11 + s9
+loadaddr 107 s11
+s11[0] = s8
+load 107 s8
+t2 = s8
+load 38 s9
+s11 = 3
+s8 = s11 + s9
+loadaddr 108 s11
+s11[0] = s8
+load 108 s8
+t3 = s8
+load 39 s9
+s11 = 4
+s8 = s11 + s9
+loadaddr 109 s11
+s11[0] = s8
+load 109 s8
+t4 = s8
+s8 = t1 + t0
+loadaddr 110 s11
+s11[0] = s8
+load 18 t0
+load 19 t1
+load 110 s9
+s8 = s9 + t2
+loadaddr 111 s11
+s11[0] = s8
+load 20 t2
+load 111 s9
+s8 = s9 + t3
+loadaddr 112 s11
+s11[0] = s8
+load 21 t3
+load 112 s9
+s8 = s9 + t4
+loadaddr 113 s11
+s11[0] = s8
+load 22 t4
+load 113 s9
+s8 = s9 - t6
+loadaddr 114 s11
+s11[0] = s8
+load 23 t6
+load 114 s9
+s8 = s9 - s0
+loadaddr 115 s11
+s11[0] = s8
+load 24 s0
+load 115 s9
+s8 = s9 - s1
+loadaddr 116 s11
+s11[0] = s8
+load 25 s1
+load 116 s9
+s8 = s9 - s2
+loadaddr 117 s11
+s11[0] = s8
+load 26 s2
+load 117 s9
+s8 = s9 + s3
+loadaddr 118 s11
+s11[0] = s8
+load 27 s3
+load 118 s9
+s8 = s9 + s4
+loadaddr 119 s11
+s11[0] = s8
+load 28 s4
+load 119 s9
+s8 = s9 + s5
+loadaddr 120 s11
+s11[0] = s8
+load 29 s5
+load 120 s9
+s8 = s9 + s6
+loadaddr 121 s11
+s11[0] = s8
+load 30 s6
+load 121 s9
+s8 = s9 - s7
+loadaddr 122 s11
+s11[0] = s8
+load 31 s7
+load 122 s9
+s8 = s9 - t5
+loadaddr 123 s11
+s11[0] = s8
+load 32 t5
+load 123 s9
+s8 = s9 - t0
+loadaddr 124 s11
+s11[0] = s8
+load 33 t0
+load 124 s9
+s8 = s9 - t1
+loadaddr 125 s11
+s11[0] = s8
+load 34 t1
+load 125 s9
+s8 = s9 + t2
+loadaddr 126 s11
+s11[0] = s8
+load 35 t2
+load 126 s9
+s8 = s9 + t3
+loadaddr 127 s11
+s11[0] = s8
+load 36 t3
+load 127 s9
+s8 = s9 + t4
+loadaddr 128 s11
+s11[0] = s8
+load 37 t4
+load 128 s9
+s8 = s9 + t6
+loadaddr 129 s11
+s11[0] = s8
+load 38 t6
+load 129 s9
+s8 = s9 - s0
+loadaddr 130 s11
+s11[0] = s8
+load 39 s0
+load 130 s9
+s8 = s9 - s1
+loadaddr 131 s11
+s11[0] = s8
+load 131 s1
+s8 = s1 - s2
+loadaddr 132 s11
+s11[0] = s8
+load 132 s1
+s2 = s1 - s3
+s1 = s2 + s4
+s2 = s1 + s5
+s1 = s2 + s6
+s2 = s1 + s7
+s1 = s2 - t5
+t5 = s1 - t0
+t0 = t5 - t1
+t1 = t0 - t2
+t0 = t1 + t3
+t1 = t0 + t4
+t0 = t1 + t6
+t1 = t0 + s0
+a0 = t1
+return
+end f_func
+f_main [0][6]
+t0 = 1
+s11 = 18
+t1 = t0 + s11
+t2 = t1
+t1 = t0
+t0 = t2
+a0 = t1
+a1 = t0
+call f_func
+t0 = a0
+a0 = t0
+return
+end f_main

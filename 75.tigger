@@ -1,0 +1,105 @@
+f_maxArea [2][29]
+t0 = 0
+s11 = 1
+t1 = a1 - s11
+t2 = t1
+t1 = -1
+l0:
+t3 = t0 < t2
+s11 = 0
+if t3 == s11 goto l6
+s11 = 4
+t3 = t0 * s11
+s11 = a0 + t3
+t4 = s11[0]
+s11 = 4
+t3 = t2 * s11
+s11 = a0 + t3
+t5 = s11[0]
+t3 = t4 < t5
+s11 = 0
+if t3 == s11 goto l1
+t3 = t2 - t0
+s11 = 4
+t4 = t0 * s11
+s11 = a0 + t4
+t5 = s11[0]
+t4 = t3 * t5
+t3 = t4
+goto l2
+l1:
+t4 = t2 - t0
+s11 = 4
+t5 = t2 * s11
+s11 = a0 + t5
+t6 = s11[0]
+t5 = t4 * t6
+t3 = t5
+l2:
+t4 = t3 > t1
+s11 = 0
+if t4 == s11 goto l3
+t1 = t3
+l3:
+s11 = 4
+t3 = t0 * s11
+s11 = a0 + t3
+t4 = s11[0]
+s11 = 4
+t3 = t2 * s11
+s11 = a0 + t3
+t5 = s11[0]
+t3 = t4 > t5
+s11 = 0
+if t3 == s11 goto l4
+s11 = 1
+t3 = t2 - s11
+t2 = t3
+goto l5
+l4:
+s11 = 1
+t2 = t0 + s11
+t0 = t2
+l5:
+goto l0
+l6:
+a0 = t1
+return
+end f_maxArea
+f_main [0][15]
+loadaddr 1 t0
+s11 = 3
+t0[0] = s11
+s11 = 3
+t0[4] = s11
+s11 = 9
+t0[8] = s11
+s11 = 0
+t0[12] = s11
+s11 = 0
+t0[16] = s11
+s11 = 1
+t0[20] = s11
+s11 = 1
+t0[24] = s11
+s11 = 5
+t0[28] = s11
+s11 = 7
+t0[32] = s11
+s11 = 8
+t0[36] = s11
+t1 = 10
+s11 = 0
+t2 = t0 + s11
+t0 = t2
+t2 = t1
+a0 = t0
+a1 = t2
+store t1 0
+call f_maxArea
+t0 = a0
+load 0 t1
+t1 = t0
+a0 = t1
+return
+end f_main
