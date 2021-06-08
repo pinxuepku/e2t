@@ -4,6 +4,9 @@
 	#include <stdio.h>
 	#include <string>
 	#include <vector>
+	#include <stdlib.h>
+	#include <string.h>
+
 
 	using namespace std;
 	Node* root;
@@ -369,8 +372,8 @@ label : T_LABEL{
 
 %%
 int main(int argc, char** argv){
-	yyin=fopen(argv[2],"r");
-	freopen(argv[4],"w",stdout);
+	yyin=fopen(argv[3],"r");
+	freopen(argv[5],"w",stdout);
 	//cout<<-1<<endl;
 	yyparse();
 	//cout<<0<<endl;
