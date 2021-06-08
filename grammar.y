@@ -369,17 +369,13 @@ label : T_LABEL{
 
 %%
 int main(int argc, char** argv){
-	//yyin=fopen(argv[2],"r");
-	yyin=fopen(argv[2],"r");
-	//freopen(argv[2], "r", stdin);
-	freopen(argv[4], "w", stdout);
+	yyin=fopen(argv[1],"r");
+	//cout<<-1<<endl;
 	yyparse();
-	//printTree(root);
+	//cout<<0<<endl;
 	init_symtab(root,global);
-	init_link(root);
-	liveness(root);
-	//cout<<"fuck"<<endl;
-	//cout<<global.size()<<endl;
+	//cout<<1<<endl;
 	codeGen(root,global);
+	//cout<<2<<endl;
 	return 0;
 }

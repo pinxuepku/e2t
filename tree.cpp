@@ -20,6 +20,19 @@ void printTree(Node* r){
     }
 }
 
+int get_index(Node* func, string name){
+    int len=func->local_symtab.size();
+    for(int i=0;i<len;i++){
+        if(name==func->local_symtab[i]->name){
+            return i;
+        }
+    }
+    //cout<<158<<" "<<name<<endl;
+    cout<<"error: no such variable"<<endl;
+    exit(-1);
+    //return 0;
+}
+
 void init_symtab(Node* r,vector<Symbol*>&global){
     //从root开始
     int len=r->mem.size();
@@ -103,182 +116,12 @@ void init_symtab(Node* r,vector<Symbol*>&global){
     }
 }
 
-void init_link(Node* r){
-    int len=r->mem.size();
-    for(int i=0;i<len;i++){
-        if(r->mem[i]->node_type==NODE_TYPE_FUNCDEF){
-            Node* funcdef=r->mem[i];
-            Node* statements=funcdef->children[2];
-            int len2=statements->mem.size();
-            for(int j=0;j<len2;j++){
-                if(statements->mem[j]->exp_type==6){
-                    int k=j+1;
-                    while(k<len2){
-                        if(statements->mem[k]->exp_type==8 && statements->mem[k]->children[0]->name==statements->mem[j]->children[3]->name){
-                            statements->mem[j]->next1=statements->mem[k];
-                            break;
-                        }else{
-                            k=k+1;
-                        }
-                    }
-                    if(j==len2-1){
-                        statements->mem[j]->next2=NULL;
-                    }else{
-                        statements->mem[j]->next2=statements->mem[j+1];
-                    }  
-                }else if(statements->mem[j]->exp_type==7){
-                    int k=j+1;
-                    while(k<len2){
-                        if(statements->mem[k]->exp_type==8 && statements->mem[k]->children[0]->name==statements->mem[j]->children[0]->name){
-                            statements->mem[j]->next1=statements->mem[k];
-                            break;
-                        }else{
-                            k=k+1;
-                        }
-                    }
-                }else{
-                    if(j==len2-1){
-                        statements->mem[j]->next1=NULL;
-                    }else{
-                        statements->mem[j]->next1=statements->mem[j+1];
-                    }
-                }
-            }
-        }
-    }
-}
-
-int get_index(Node* func, string name){
-    int len=func->local_symtab.size();
-    for(int i=0;i<len;i++){
-        if(name==func->local_symtab[i]->name){
-            return i;
-        }
-    }
-    cout<<158<<" "<<name<<endl;
-    cout<<"error: no such variable"<<endl;
-    exit(-1);
-    //return 0;
-}
-
-void liveness(Node* r){
-    int len=r->mem.size();
-    for(int i=0;i<len;i++){
-        if(r->mem[i]->node_type==NODE_TYPE_FUNCDEF){
-            Node* func=r->mem[i];
-            Node* statements=func->children[2];
-            int len2=statements->mem.size();
-            for(int j=0;j<len2;j++){
-                Node* st=statements->mem[j];
-                if(st->node_type==NODE_TYPE_DECLARE){
-                    continue;
-                }else if(st->exp_type==1){
-                    //ident T_ASSIGN rightval binop rightval
-                    st->def[get_index(func,st->children[0]->name)]=1;
-                    if(st->children[1]->rv_type==1){
-                        st->use[get_index(func, st->children[1]->children[0]->name)]=1;
-                    }
-                    if(st->children[3]->rv_type==1){
-                        st->use[get_index(func, st->children[3]->children[0]->name)]=1;
-                    }
-                }else if(st->exp_type==2){
-                    //ident T_ASSIGN op rightval
-                    st->def[get_index(func,st->children[0]->name)]=1;
-                    if(st->children[2]->rv_type==1){
-                        st->use[get_index(func, st->children[2]->children[0]->name)]=1;
-                    }
-                }else if(st->exp_type==3){
-                    //ident T_ASSIGN rightval
-                    st->def[get_index(func,st->children[0]->name)]=1;
-                    if(st->children[1]->rv_type==1){
-                        st->use[get_index(func, st->children[1]->children[0]->name)]=1;
-                    }
-                }else if(st->exp_type==4){
-                    //ident T_LFANGKUOHAO rightval T_RFANGKUOHAO T_ASSIGN rightval
-                    st->def[get_index(func,st->children[0]->name)]=1;
-                    if(st->children[1]->rv_type==1){
-                        st->use[get_index(func, st->children[1]->children[0]->name)]=1;
-                    }
-                    if(st->children[2]->rv_type==1){
-                        st->use[get_index(func, st->children[2]->children[0]->name)]=1;
-                    }
-                }else if(st->exp_type==5){
-                    //ident T_ASSIGN ident T_LFANGKUOHAO rightval T_RFANGKUOHAO
-                    st->def[get_index(func,st->children[0]->name)]=1;
-                    st->use[get_index(func,st->children[1]->name)]=1;
-                    if(st->children[2]->rv_type==1){
-                        st->use[get_index(func, st->children[2]->children[0]->name)]=1;
-                    }
-                }else if(st->exp_type==6){
-                    //T_IF rightval logicop rightval T_GOTO label
-                    if(st->children[0]->rv_type==1){
-                        st->use[get_index(func, st->children[0]->children[0]->name)]=1;
-                    }
-                    if(st->children[2]->rv_type==1){
-                        st->use[get_index(func, st->children[2]->children[0]->name)]=1;
-                    }
-                }else if(st->exp_type==9){
-                    //param r
-                    if(st->children[0]->rv_type==1){
-                        st->use[get_index(func, st->children[0]->children[0]->name)]=1;
-                    }
-                }else if(st->exp_type==11){
-                    //ident T_ASSIGN T_CALL funcname
-                    st->def[get_index(func,st->children[0]->name)]=1;
-                }else if(st->exp_type==12){
-                    if(st->children[0]->rv_type==1){
-                        st->use[get_index(func, st->children[0]->children[0]->name)]=1;
-                    }
-                }
-            }
-        }
-    }
-
-
-    for(int i=0;i<len;i++){
-        if(r->mem[i]->node_type==NODE_TYPE_FUNCDEF){
-            bool flag=1;
-            while(flag){
-                Node* func=r->mem[i];
-                Node* statements=func->children[2];
-                int len2=statements->mem.size();
-                Node* tmp=statements->mem[len2-1];
-                bool change=0;
-                while(tmp!=NULL){
-                    if(tmp->next1==NULL){
-                        tmp->live=tmp->use;
-                    }else{
-                        bitset<500>tmp_bitset;
-                        if(tmp->exp_type==6){
-                            tmp_bitset=tmp->next1->live | tmp->next2->live;
-                        }else{
-                            tmp_bitset=tmp->next1->live;
-                        }
-                        tmp_bitset=tmp_bitset & (~tmp->def);
-                        tmp_bitset=tmp_bitset | tmp->use;
-                        if(tmp_bitset!=tmp->live){
-                            change=1;
-                        }
-                        tmp->live=tmp_bitset;
-                    }
-                    tmp=tmp->pre;
-                    if(change==0){
-                        flag=0;
-                    }
-                }
-            }
-        }
-    }
-}
-
 
 void codeGen(Node* r,vector<Symbol*>&global){
     int len=r->mem.size();
     for(int i=0;i<len;i++){
         if(r->mem[i]->node_type==NODE_TYPE_DECLARE){
-            //cout<<11<<endl;
             codeGen_global_declare(r->mem[i],global);
-            //cout<<12<<endl;
             continue;
         }
         if(r->mem[i]->node_type==NODE_TYPE_FUNCDEF){
@@ -291,16 +134,18 @@ void codeGen(Node* r,vector<Symbol*>&global){
                 if(func->local_symtab[j]->param_index>0){
                     allocate(func,j);
                 }
-            }
+            }//先把参数都处理掉
             cout<<func->children[0]->name<<" ["<<func->children[1]->val<<"]["<<func->stack_size<<"]"<<endl;
+            cout<<endl;
             for(int j=0;j<len2;j++){
                 if(statements->mem[j]->node_type==NODE_TYPE_DECLARE){
                     continue;
                 }
                 Node* st=statements->mem[j];
-                //cout<<"sym_num"<<sym_num<<endl;
+                /*
                 for(int k=0;k<sym_num;k++){
                     if(st->live[k]==1 && func->local_symtab[k]->reg==0){
+                        //cout<<"dijiju:"<<j<<endl;
                         int alloc_reg=allocate(func,k);
                         if(alloc_reg>=9 && alloc_reg<=11){
                             break;
@@ -313,20 +158,17 @@ void codeGen(Node* r,vector<Symbol*>&global){
                             }
                         }else{
                             if(func->local_symtab[k]->array_size==0){
-                                //cout<<314<<func->local_symtab[k]->name<<endl;
                                 cout<<"load "<<func->local_symtab[k]->stack_location<<" "<<regs[alloc_reg]<<endl;
                             }else{
-                                //cout<<"316 alloc_reg"<<alloc_reg<<endl;
                                 cout<<"loadaddr "<<func->local_symtab[k]->stack_location<<" "<<regs[alloc_reg]<<endl;
                             }
                         }
                     }
                 }
-                //cout<<"here321"<<endl;
                 delete_reg(func,j,record[9]);
                 delete_reg(func,j,record[10]);
                 delete_reg(func,j,record[11]);
-                //cout<<"here325"<<endl;
+                */
                 if(st->exp_type==1){
                     codeGen_1(func,st,j,global);
                 }else if(st->exp_type==2){
@@ -363,20 +205,17 @@ void codeGen(Node* r,vector<Symbol*>&global){
 void codeGen_global_declare(Node* r,vector<Symbol*>&global){
     int i=0;
     int len=global.size();
-    //cout<<"debug len="<<len<<endl;
-    //cout<<r->children[0]->name<<endl;
     for(i;i<len;i++){
         if(global[i]->name==r->children[0]->name){
             break;
         }
     }
-    //cout<<"i"<<i<<endl;
-    //cout<<global[0]->global_index<<" "<<global[0]->name<<endl;
     if(r->children[1]==NULL){
         cout<<"v"<<global[i]->global_index<<" = 0"<<endl;
     }else{
         cout<<"v"<<global[i]->global_index<<" = malloc "<<global[i]->array_size<<endl;
     }
+    cout<<endl;
 }
 
 int allocate(Node* r, int id){
@@ -390,49 +229,22 @@ int allocate(Node* r, int id){
     for(int i=13;i<20;i++){
         if(record[i]==-1){
             record[i]=id;
-            r->local_symtab[id]->reg=i;
             return i;
         }
     }
     for(int i=1;i<12;i++){
         if(record[i]==-1){
             record[i]=id;
-            r->local_symtab[id]->reg=i;
             return i;
         }
     }
+    cout<<"bukeneng!"<<endl;
     return 0;
 }
 
-void delete_reg(Node* func,int st_idx, int id){
-    //cout<<"here404"<<endl;
-    //cout<<st_idx<<endl;
-    //cout<<func->children[2]->mem.size()<<endl;
-    if(st_idx+1==func->children[2]->mem.size()){
-        return;
-    }
-    if(id==-1){
-        return;
-    }
-    //makecout<<415<<" "<<id<<endl;
-    //cout<<"410"<<endl;
-    if(func->local_symtab[id]->reg>=9&&func->local_symtab[id]->reg<=11){
-        record[func->local_symtab[id]->reg]=-1;
-        func->local_symtab[id]->reg=0;
-        return;
-    }
-    int flag=0;
-    for(int i=st_idx+1;i<func->children[2]->mem.size();i++){
-        Node* st2=func->children[2]->mem[i];
-        if(st2->live[id]==1){
-            flag=1;
-            break;
-        }
-    }
-    if(flag==0){
-        record[func->local_symtab[id]->reg]=-1;
-        func->local_symtab[id]->reg=0;
-        return;
+void clear(){
+    for(int i=0;i<20;i++){
+        record[i]=-1;
     }
 }
 
@@ -445,16 +257,20 @@ void codeGen_1(Node* func, Node* st, int index,vector<Symbol*>&global){
     //ident T_ASSIGN rightval binop rightval
     int i0=get_index(func,st->children[0]->name);
     int reg0=func->local_symtab[i0]->reg;
-    if(reg0==0){
-        //cout<<"here"<<endl;
+    if(reg0==0){ // 说明不是参数，可能是全局变量或者局部变量
         reg0=allocate(func,i0);
+        if(func->local_symtab[i0]->is_global==1){
+            cout<<"load v"<<func->local_symtab[i0]->global_index<<" "<<regs[reg0]<<endl;
+        }else{
+            cout<<"load "<<func->local_symtab[i0]->stack_location<<" "<<regs[reg0]<<endl;
+        }
     }
     string op=st->children[2]->name;
     if(st->children[1]->rv_type==1 && st->children[3]->rv_type==1){
         //ident
         int i1=get_index(func,st->children[1]->children[0]->name);
         int reg1=func->local_symtab[i1]->reg;
-        if(reg1==0){
+        if(reg1==0){ // 说明不是参数，可能是全局变量或者局部变量
             reg1=allocate(func,i1);
             if(func->local_symtab[i1]->is_global==1){
                 cout<<"load v"<<func->local_symtab[i1]->global_index<<" "<<regs[reg1]<<endl;
@@ -464,7 +280,7 @@ void codeGen_1(Node* func, Node* st, int index,vector<Symbol*>&global){
         }
         int i2=get_index(func,st->children[3]->children[0]->name);
         int reg2=func->local_symtab[i2]->reg;
-        if(reg2==0){
+        if(reg2==0){ // 说明不是参数，可能是全局变量或者局部变量
             reg2=allocate(func,i2);
             if(func->local_symtab[i2]->is_global==1){
                 cout<<"load v"<<func->local_symtab[i2]->global_index<<" "<<regs[reg2]<<endl;
@@ -472,15 +288,11 @@ void codeGen_1(Node* func, Node* st, int index,vector<Symbol*>&global){
                 cout<<"load "<<func->local_symtab[i2]->stack_location<<" "<<regs[reg2]<<endl;
             }
         }
-
         cout<<regs[reg0]<<" = "<<regs[reg1]<<" "<<op<<" "<<regs[reg2]<<endl;
-        delete_reg(func,index,i0);
-        delete_reg(func,index,i1);
-        delete_reg(func,index,i2);
     }else if(st->children[1]->rv_type==1 && st->children[3]->rv_type==2){
         int i1=get_index(func,st->children[1]->children[0]->name);
         int reg1=func->local_symtab[i1]->reg;
-        if(reg1==0){
+        if(reg1==0){ // 说明不是参数，可能是全局变量或者局部变量
             reg1=allocate(func,i1);
             if(func->local_symtab[i1]->is_global==1){
                 cout<<"load v"<<func->local_symtab[i1]->global_index<<" "<<regs[reg1]<<endl;
@@ -490,8 +302,7 @@ void codeGen_1(Node* func, Node* st, int index,vector<Symbol*>&global){
         }
         cout<<"s11 = "<<st->children[3]->children[0]->val<<endl;
         cout<<regs[reg0]<<" = "<<regs[reg1]<<" "<<op<<" "<<"s11"<<endl;
-        delete_reg(func,index,i0);
-        delete_reg(func,index,i1);
+        
     }else if(st->children[1]->rv_type==2 && st->children[3]->rv_type==1){
         int i2=get_index(func,st->children[3]->children[0]->name);
         int reg2=func->local_symtab[i2]->reg;
@@ -505,29 +316,33 @@ void codeGen_1(Node* func, Node* st, int index,vector<Symbol*>&global){
         }
         cout<<"s11 = "<<st->children[1]->children[0]->val<<endl;
         cout<<regs[reg0]<<" = s11 "<<op<<" "<<regs[reg2]<<endl;
-        delete_reg(func,index,i0);
-        delete_reg(func,index,i2);
     }else if(st->children[1]->rv_type==2 && st->children[3]->rv_type==2){
         cout<<"s10 = "<<st->children[1]->children[0]->val<<endl;
         cout<<"s11 = "<<st->children[3]->children[0]->val<<endl;
         cout<<regs[reg0]<<" = s10 "<<op<<" s11"<<endl;
-        delete_reg(func,index,i0);
     }
+    clear();
     if(func->local_symtab[i0]->is_global==1){
         cout<<"loadaddr v"<<func->local_symtab[i0]->global_index<<" s11"<<endl;
         cout<<"s11[0] = "<<regs[reg0]<<endl;
-    }else if(reg0<=11&&reg0>=9){
+    }else if(reg0>=1&&reg0<=19){
         cout<<"loadaddr "<<func->local_symtab[i0]->stack_location<<" s11"<<endl;
         cout<<"s11[0] = "<<regs[reg0]<<endl;
     }
+    cout<<endl;
 }
 
 void codeGen_2(Node* func, Node* st, int index,vector<Symbol*>&global){
     //ident T_ASSIGN op rightval
     int i0=get_index(func,st->children[0]->name);
     int reg0=func->local_symtab[i0]->reg;
-    if(reg0==0){
+    if(reg0==0){ // 说明不是参数，可能是全局变量或者局部变量
         reg0=allocate(func,i0);
+        if(func->local_symtab[i0]->is_global==1){
+            cout<<"load v"<<func->local_symtab[i0]->global_index<<" "<<regs[reg0]<<endl;
+        }else{
+            cout<<"load "<<func->local_symtab[i0]->stack_location<<" "<<regs[reg0]<<endl;
+        }
     }
     string op=st->children[1]->name;
     if(st->children[2]->rv_type==1){
@@ -542,8 +357,6 @@ void codeGen_2(Node* func, Node* st, int index,vector<Symbol*>&global){
             }
         }
         cout<<regs[reg0]<<" = "<<op<<" "<<regs[reg1]<<endl;
-        delete_reg(func,index,i0);
-        delete_reg(func,index,i1);
     }else{
         int temp=0;
         if(st->children[1]->name=="!"){
@@ -552,24 +365,29 @@ void codeGen_2(Node* func, Node* st, int index,vector<Symbol*>&global){
             temp=(int)(-st->children[2]->children[0]->val);
         }
         cout<<regs[reg0]<<" = "<<temp<<endl;
-        delete_reg(func,index,i0);
     }
+    clear();
     if(func->local_symtab[i0]->is_global==1){
         cout<<"loadaddr v"<<func->local_symtab[i0]->global_index<<" s11"<<endl;
         cout<<"s11[0] = "<<regs[reg0]<<endl;
-    }else if(reg0<=11&&reg0>=9){
+    }else if(reg0>=1&&reg0<=19){
         cout<<"loadaddr "<<func->local_symtab[i0]->stack_location<<" s11"<<endl;
         cout<<"s11[0] = "<<regs[reg0]<<endl;
     }
+    cout<<endl;
 }
 
 void codeGen_3(Node* func, Node* st, int index,vector<Symbol*>&global){
     //ident T_ASSIGN rightval
-    //cout<<"fucking"<<endl;
     int i0=get_index(func,st->children[0]->name);
     int reg0=func->local_symtab[i0]->reg;
-    if(reg0==0){
+    if(reg0==0){ // 说明不是参数，可能是全局变量或者局部变量
         reg0=allocate(func,i0);
+        if(func->local_symtab[i0]->is_global==1){
+            cout<<"load v"<<func->local_symtab[i0]->global_index<<" "<<regs[reg0]<<endl;
+        }else{
+            cout<<"load "<<func->local_symtab[i0]->stack_location<<" "<<regs[reg0]<<endl;
+        }
     }
     if(st->children[1]->rv_type==1){
         int i1=get_index(func,st->children[1]->children[0]->name);
@@ -583,29 +401,24 @@ void codeGen_3(Node* func, Node* st, int index,vector<Symbol*>&global){
             }
         }
         cout<<regs[reg0]<<" = "<<regs[reg1]<<endl;
-        delete_reg(func,index,i0);
-        delete_reg(func,index,i1);
     }else{
-        //cout<<"585"<<endl;
         int temp=st->children[1]->children[0]->val;
         cout<<regs[reg0]<<" = "<<temp<<endl;
-        delete_reg(func,index,i0);
     }
+    clear();
     if(func->local_symtab[i0]->is_global==1){
         cout<<"loadaddr v"<<func->local_symtab[i0]->global_index<<" s11"<<endl;
         cout<<"s11[0] = "<<regs[reg0]<<endl;
-    }else if(reg0<=11&&reg0>=9){
+    }else if(reg0>=1&&reg0<=19){
         cout<<"loadaddr "<<func->local_symtab[i0]->stack_location<<" s11"<<endl;
         cout<<"s11[0] = "<<regs[reg0]<<endl;
     }
+    cout<<endl;
 }
 
 void codeGen_4(Node* func, Node*st, int index,vector<Symbol*>&global){
     //ident T_LFANGKUOHAO rightval T_RFANGKUOHAO T_ASSIGN rightval
-    //cout<<601<<endl;
-    //cout<<607<<endl;
     int i0=get_index(func,st->children[0]->name);
-    //cout<<608<<endl;
     int reg0=func->local_symtab[i0]->reg;
     if(reg0==0){
         reg0=allocate(func,i0);
@@ -640,9 +453,6 @@ void codeGen_4(Node* func, Node*st, int index,vector<Symbol*>&global){
 
         cout<<"s11 = "<<regs[reg0]<<" + "<<regs[reg1]<<endl;
         cout<<"s11[0] = "<<regs[reg2]<<endl;
-        delete_reg(func, index,i0);
-        delete_reg(func, index,i1);
-        delete_reg(func, index,i2);
     }else if(st->children[1]->rv_type==2&&st->children[2]->rv_type==1){
         int i2=get_index(func,st->children[2]->children[0]->name);
         int reg2=func->local_symtab[i2]->reg;
@@ -654,10 +464,7 @@ void codeGen_4(Node* func, Node*st, int index,vector<Symbol*>&global){
                 cout<<"load "<<func->local_symtab[i2]->stack_location<<" "<<regs[reg2]<<endl;
             }
         }
-
         cout<<regs[reg0]<<"["<<st->children[1]->children[0]->val<<"] = "<<regs[reg2]<<endl;
-        delete_reg(func, index,i0);
-        delete_reg(func, index,i2);
     }else if(st->children[1]->rv_type==1&&st->children[2]->rv_type==2){
         int i1=get_index(func,st->children[1]->children[0]->name);
         int reg1=func->local_symtab[i1]->reg;
@@ -669,36 +476,37 @@ void codeGen_4(Node* func, Node*st, int index,vector<Symbol*>&global){
                 cout<<"load "<<func->local_symtab[i1]->stack_location<<" "<<regs[reg1]<<endl;
             }
         }
-
         cout<<"s11 = "<<regs[reg0]<<" + "<<regs[reg1]<<endl;
         cout<<"s11[0] = "<<st->children[2]->children[0]->val<<endl;
-        delete_reg(func, index,i0);
-        delete_reg(func, index,i1);
     }else if(st->children[1]->rv_type==2&&st->children[2]->rv_type==2){
-        //cout<<"672"<<endl;
         cout<<"s11 = "<<st->children[2]->children[0]->val<<endl;
         cout<<regs[reg0]<<"["<<st->children[1]->children[0]->val<<"] = s11"<<endl;
-        //cout<<676<<" "<<i0<<endl;
-        delete_reg(func, index,i0);
-        //cout<<678<<endl;
     }
+    clear();
+    cout<<endl;
 }
 
 void codeGen_5(Node* func, Node* st, int index,vector<Symbol*>&global){
     //ident T_ASSIGN ident T_LFANGKUOHAO rightval T_RFANGKUOHAO
     int i0=get_index(func,st->children[0]->name);
     int reg0=func->local_symtab[i0]->reg;
-    if(reg0==0){
+    if(reg0==0){ // 说明不是参数，可能是全局变量或者局部变量
         reg0=allocate(func,i0);
+        if(func->local_symtab[i0]->is_global==1){
+            cout<<"load v"<<func->local_symtab[i0]->global_index<<" "<<regs[reg0]<<endl;
+        }else{
+            cout<<"load "<<func->local_symtab[i0]->stack_location<<" "<<regs[reg0]<<endl;
+        }
     }
+    //再说
     int i1=get_index(func,st->children[1]->name);
     int reg1=func->local_symtab[i1]->reg;
     if(reg1==0){
         reg1=allocate(func,i1);
         if(func->local_symtab[i1]->is_global==1){
-            cout<<"loadaddr v"<<func->local_symtab[i1]->global_index<<" "<<regs[reg1]<<endl;
+            cout<<"load v"<<func->local_symtab[i1]->global_index<<" "<<regs[reg1]<<endl;
         }else{
-            cout<<"loadaddr "<<func->local_symtab[i1]->stack_location<<" "<<regs[reg1]<<endl;
+            cout<<"load "<<func->local_symtab[i1]->stack_location<<" "<<regs[reg1]<<endl;
         }
     }
 
@@ -715,24 +523,18 @@ void codeGen_5(Node* func, Node* st, int index,vector<Symbol*>&global){
         }
         cout<<"s11 = "<<regs[reg1]<<" + "<<regs[reg2]<<endl;
         cout<<regs[reg0]<<" = s11[0]"<<endl;
-
-        delete_reg(func,index,i0);
-        delete_reg(func,index,i1);
-        delete_reg(func,index,i2);
     }else if(st->children[2]->rv_type==2){
         cout<<regs[reg0]<<" = "<<regs[reg1]<<"["<<st->children[2]->children[0]->val<<"]"<<endl;
-
-        delete_reg(func,index,i0);
-        delete_reg(func,index,i1);
     }
-
+    clear();
     if(func->local_symtab[i0]->is_global==1){
         cout<<"loadaddr v"<<func->local_symtab[i0]->global_index<<" s11"<<endl;
         cout<<"s11[0] = "<<regs[reg0]<<endl;
-    }else if(reg0<=11&&reg0>=9){
+    }else if(reg0>=1&&reg0<=19){
         cout<<"loadaddr "<<func->local_symtab[i0]->stack_location<<" s11"<<endl;
         cout<<"s11[0] = "<<regs[reg0]<<endl;
     }
+    cout<<endl;
 }
 
 void codeGen_6(Node* func, Node* st, int index,vector<Symbol*>&global){
@@ -742,71 +544,68 @@ void codeGen_6(Node* func, Node* st, int index,vector<Symbol*>&global){
     if(st->children[0]->rv_type==1&&st->children[2]->rv_type==1){
         int i0=get_index(func,st->children[0]->children[0]->name);
         int reg0=func->local_symtab[i0]->reg;
-        if(reg0==0){
+        if(reg0==0){ // 说明不是参数，可能是全局变量或者局部变量
             reg0=allocate(func,i0);
             if(func->local_symtab[i0]->is_global==1){
-                cout<<"loadaddr v"<<func->local_symtab[i0]->global_index<<" "<<regs[reg0]<<endl;
+                cout<<"load v"<<func->local_symtab[i0]->global_index<<" "<<regs[reg0]<<endl;
             }else{
-                cout<<"loadaddr "<<func->local_symtab[i0]->stack_location<<" "<<regs[reg0]<<endl;
+                cout<<"load "<<func->local_symtab[i0]->stack_location<<" "<<regs[reg0]<<endl;
             }
-        }   
+        }
         int i1=get_index(func,st->children[2]->children[0]->name);
         int reg1=func->local_symtab[i1]->reg;
-        if(reg1==0){
+        if(reg1==0){ // 说明不是参数，可能是全局变量或者局部变量
             reg1=allocate(func,i1);
             if(func->local_symtab[i1]->is_global==1){
-                cout<<"loadaddr v"<<func->local_symtab[i1]->global_index<<" "<<regs[reg1]<<endl;
+                cout<<"load v"<<func->local_symtab[i1]->global_index<<" "<<regs[reg1]<<endl;
             }else{
-                cout<<"loadaddr "<<func->local_symtab[i1]->stack_location<<" "<<regs[reg1]<<endl;
+                cout<<"load "<<func->local_symtab[i1]->stack_location<<" "<<regs[reg1]<<endl;
             }
         }
         cout<<"if "<<regs[reg0]<<" "<<op<<" "<<regs[reg1]<<" goto "<<label<<endl;
-
-        delete_reg(func,index,i0);
-        delete_reg(func,index,i1);
     }else if(st->children[0]->rv_type==2&&st->children[2]->rv_type==1){
         int i1=get_index(func,st->children[2]->children[0]->name);
         int reg1=func->local_symtab[i1]->reg;
-        if(reg1==0){
+        if(reg1==0){ // 说明不是参数，可能是全局变量或者局部变量
             reg1=allocate(func,i1);
             if(func->local_symtab[i1]->is_global==1){
-                cout<<"loadaddr v"<<func->local_symtab[i1]->global_index<<" "<<regs[reg1]<<endl;
+                cout<<"load v"<<func->local_symtab[i1]->global_index<<" "<<regs[reg1]<<endl;
             }else{
-                cout<<"loadaddr "<<func->local_symtab[i1]->stack_location<<" "<<regs[reg1]<<endl;
+                cout<<"load "<<func->local_symtab[i1]->stack_location<<" "<<regs[reg1]<<endl;
             }
         }
         cout<<"s11 = "<<st->children[0]->children[0]->val<<endl;
         cout<<"if s11 "<<op<<" "<<regs[reg1]<<" goto "<<label<<endl;
-
-        delete_reg(func,index,i1);
     }else if(st->children[0]->rv_type==1&&st->children[2]->rv_type==2){
         int i0=get_index(func,st->children[0]->children[0]->name);
         int reg0=func->local_symtab[i0]->reg;
-        if(reg0==0){
+        if(reg0==0){ // 说明不是参数，可能是全局变量或者局部变量
             reg0=allocate(func,i0);
             if(func->local_symtab[i0]->is_global==1){
-                cout<<"loadaddr v"<<func->local_symtab[i0]->global_index<<" "<<regs[reg0]<<endl;
+                cout<<"load v"<<func->local_symtab[i0]->global_index<<" "<<regs[reg0]<<endl;
             }else{
-                cout<<"loadaddr "<<func->local_symtab[i0]->stack_location<<" "<<regs[reg0]<<endl;
+                cout<<"load "<<func->local_symtab[i0]->stack_location<<" "<<regs[reg0]<<endl;
             }
-        }   
+        }
         cout<<"s11 = "<<st->children[2]->children[0]->val<<endl;
         cout<<"if "<<regs[reg0]<<" "<<op<<" s11 goto "<<label<<endl;
-
-        delete_reg(func,index,i0);
     }else if(st->children[0]->rv_type==1&&st->children[2]->rv_type==2){
         cout<<"s11 = "<<st->children[2]->children[0]->val<<endl;
         cout<<"s10 = "<<st->children[0]->children[0]->val<<endl;
         cout<<"if s10 "<<op<<" s11 goto "<<label<<endl;
     }
+    clear();
+    cout<<endl;
 }
 
 void codeGen_7(Node* func, Node* st, int index,vector<Symbol*>&global){
     cout<<"goto "<<st->children[0]->name<<endl;
+    cout<<endl;
 }
 
 void codeGen_8(Node* func, Node* st, int index,vector<Symbol*>&global){
     cout<<st->children[0]->name<<":"<<endl;
+    cout<<endl;
 }
 
 void codeGen_9(Node* func, Node* st, int index,vector<Symbol*>&global){
@@ -838,27 +637,30 @@ void codeGen_9(Node* func, Node* st, int index,vector<Symbol*>&global){
                 }
             }
         }
-        if(reg0>=20&&reg0<=27){
+        if(reg0>=20&&reg0<=27){//没想清楚
             cout<<"load "<<func->local_symtab[record[reg0]]->stack_location<<" "<<regs[reg0]<<endl;
         }else{
             cout<<regs[param_count+20]<<" = "<<regs[reg0]<<endl;
         }
-        delete_reg(func,index,i0);
     }else{
         cout<<regs[param_count]<<" = "<<st->children[0]->children[0]->val<<endl;
     }
+    clear();
     param_count++;
+    cout<<endl;
 }
 
 void codeGen_10(Node* func, Node* st, int index,vector<Symbol*>&global){
     //T_CALL funcname
     param_count=0;
     cout<<"call "<<st->children[0]->name<<endl;
+    cout<<endl;
 }
 
 void codeGen_11(Node* func, Node* st, int index,vector<Symbol*>&global){
     param_count=0;
     int len=func->local_symtab.size();
+    /*
     for(int i=0;i<len;i++){
         if(func->local_symtab[i]->reg==0){
             continue;
@@ -871,26 +673,29 @@ void codeGen_11(Node* func, Node* st, int index,vector<Symbol*>&global){
         }
 
         cout<<"store "<<regs[func->local_symtab[i]->reg]<<" "<<func->local_symtab[i]->stack_location<<endl;
-    }
-
+    }*/
     int i0=get_index(func,st->children[0]->name);
     int reg0=func->local_symtab[i0]->reg;
-    if(reg0==0){
+    if(reg0==0){ // 说明不是参数，可能是全局变量或者局部变量
         reg0=allocate(func,i0);
+        if(func->local_symtab[i0]->is_global==1){
+            cout<<"load v"<<func->local_symtab[i0]->global_index<<" "<<regs[reg0]<<endl;
+        }else{
+            cout<<"load "<<func->local_symtab[i0]->stack_location<<" "<<regs[reg0]<<endl;
+        }
     }
     cout<<"call "<<st->children[1]->name<<endl;
     cout<<regs[reg0]<<" = a0"<<endl;
-    delete_reg(func,index,i0);
 
     if(func->local_symtab[i0]->is_global==1){
         cout<<"loadaddr v"<<func->local_symtab[i0]->global_index<<" s11"<<endl;
         cout<<"s11[0] = "<<regs[reg0]<<endl;
-    }else if(reg0>=9&&reg0<=11){
+    }else if(reg0>=1&&reg0<=19){
         cout<<"loadaddr "<<func->local_symtab[i0]->stack_location<<" s11"<<endl;
         cout<<"s11[0] = "<<regs[reg0]<<endl;
     }
-
-
+    clear();
+    /*
     for(int i=0;i<len;i++){
         if(func->local_symtab[i]->reg==0){
             continue;
@@ -910,6 +715,8 @@ void codeGen_11(Node* func, Node* st, int index,vector<Symbol*>&global){
             }
         }
     }
+    */
+    cout<<endl;
 }
 
 void codeGen_12(Node* func, Node*st, int index,vector<Symbol*>&global){
@@ -928,8 +735,9 @@ void codeGen_12(Node* func, Node*st, int index,vector<Symbol*>&global){
             }
         }
         cout<<"a0 = "<<regs[reg0]<<endl;
-        delete_reg(func,index,i0);
     }
+    clear();
     cout<<"return"<<endl;
+    cout<<endl;
 }
 

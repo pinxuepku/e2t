@@ -1,5 +1,5 @@
 compiler:  grammar.cpp token.cpp
-	g++ -o compiler token.cpp grammar.tab.cpp tree.cpp 
+	g++ -o compiler token.cpp grammar.tab.cpp tree.cpp
 
 grammar.cpp: grammar.y
 	bison -d  grammar.y -o grammar.tab.cpp

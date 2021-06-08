@@ -1,0 +1,52 @@
+/*
+                Node* tmp=statements->mem[len2-1];
+                bool change=0;
+                while(tmp!=NULL){
+                    if(tmp->next1==NULL){
+                        tmp->live=tmp->use;
+                    }else{
+                        bitset<500>tmp_bitset;
+                        if(tmp->exp_type==6){
+                            tmp_bitset=tmp->next1->live | tmp->next2->live;
+                        }else{
+                            tmp_bitset=tmp->next1->live;
+                        }
+                        tmp_bitset=tmp_bitset & (~tmp->def);
+                        tmp_bitset=tmp_bitset | tmp->use;
+                        if(tmp_bitset!=tmp->live){
+                            change=1;
+                        }
+                        tmp->live=tmp_bitset;
+                    }
+                    tmp=tmp->pre;
+                    if(change==0){
+                        flag=0;
+                    }
+                }
+                */
+
+
+
+                for(int k=len2-1;k>=0;k--){
+                    if(statements->mem[k]->node_type==NODE_TYPE_DECLARE){
+                        continue;
+                    }
+                    bitset<500>tmp;
+                    if(statements->mem[k]->next1==NULL){
+                        statements->mem[k]->live=statements->mem[k]->use;
+                        continue;
+                    }else{
+                        if(statements->mem[k]->next2!=NULL){
+                            tmp=statements->mem[k]->next2->live | statements->mem[k]->next1->live;
+                        }else{
+                            tmp=statements->mem[k]->next1->live;
+                        }
+                        tmp=tmp&(~statements->mem[k]->def);
+                        tmp=tmp|statements->mem[k]->use;
+                    }
+                    if(tmp==statements->mem[k]->live){
+                        flag=0;
+                    }else{
+                        statements->mem[k]->live=tmp;
+                    }
+                }

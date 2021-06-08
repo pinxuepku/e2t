@@ -81,10 +81,7 @@ void init_symtab(Node*,vector<Symbol*>&);
 static int global_var_num=0;
 static int param_count=0;
 
-void init_link(Node*);
-void liveness(Node*);
 int get_index(Node*,string); 
-void delete_reg(Node*, int,int);
 int allocate(Node*,int);
 void codeGen(Node*,vector<Symbol*>&);
 void codeGen_global_declare(Node*,vector<Symbol*>&);
