@@ -9,6 +9,7 @@
 	Node* root;
 	extern int yylex();
 	extern FILE* yyin;
+	extern FILE* yyout;
 	extern int yylineno;
 	void yyerror(const char* s)
 	{
@@ -368,31 +369,13 @@ label : T_LABEL{
 
 %%
 int main(int argc, char** argv){
-	yyin=fopen(argv[1],"r");
-	if(yyin==NULL){
-		cout<<"input path error!"<<endl;
-		exit(-1);
-	}
+	//yyin=fopen(argv[2],"r");
+	yyin=fopen(argv[2],"r");
+	//freopen(argv[2], "r", stdin);
+	freopen(argv[4], "w", stdout);
 	yyparse();
 	//printTree(root);
 	init_symtab(root,global);
-	/*int len=global.size();
-	cout<<"global symtab size"<<endl;
-	cout<<len<<endl;
-	for(int i=0;i<len;i++){
-		//cout<<global[i]<<endl;
-		cout<<global[i]->name<<endl;
-	}
-	len=root->mem.size();
-	cout<<"root->mem.size()"<<endl;
-	cout<<len<<endl;
-	for(int i=0;i<len;i++){
-		if(root->mem[i]->node_type==NODE_TYPE_FUNCDEF){
-			cout<<"here"<<endl;
-			cout<<root->mem[i]->local_symtab.size()<<endl;
-		}
-	}	
-	*/
 	init_link(root);
 	liveness(root);
 	//cout<<"fuck"<<endl;

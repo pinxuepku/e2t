@@ -1,7 +1,0 @@
-f_main [0][2]
-call f_getint
-t0 = a0
-t1 = t0
-a0 = t1
-return
-end f_main
