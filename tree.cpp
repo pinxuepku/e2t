@@ -425,8 +425,8 @@ void codeGen_4(Node* func, Node*st, int index,vector<Symbol*>&global){
         if(func->local_symtab[i0]->is_global==1){
             cout<<"loadaddr v"<<func->local_symtab[i0]->global_index<<" "<<regs[reg0]<<endl;
         }else{
-            cout<<"loadaddr "<<func->local_symtab[i0]->stack_location<<" "<<regs[reg0]<<endl;
-        }
+            cout<<"load "<<func->local_symtab[i0]->stack_location<<" "<<regs[reg0]<<endl;
+        }//注意！！
     }
 
     if(st->children[1]->rv_type==1&&st->children[2]->rv_type==1){
@@ -498,16 +498,15 @@ void codeGen_5(Node* func, Node* st, int index,vector<Symbol*>&global){
             cout<<"load "<<func->local_symtab[i0]->stack_location<<" "<<regs[reg0]<<endl;
         }
     }
-    //再说
     int i1=get_index(func,st->children[1]->name);
     int reg1=func->local_symtab[i1]->reg;
     if(reg1==0){
         reg1=allocate(func,i1);
         if(func->local_symtab[i1]->is_global==1){
-            cout<<"load v"<<func->local_symtab[i1]->global_index<<" "<<regs[reg1]<<endl;
+            cout<<"loadaddr v"<<func->local_symtab[i1]->global_index<<" "<<regs[reg1]<<endl;
         }else{
             cout<<"load "<<func->local_symtab[i1]->stack_location<<" "<<regs[reg1]<<endl;
-        }
+        }//注意！
     }
 
     if(st->children[2]->rv_type==1){

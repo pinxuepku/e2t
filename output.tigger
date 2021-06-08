@@ -1,0 +1,236 @@
+v0 = 0
+
+v1 = 0
+
+v2 = 0
+
+v3 = 0
+
+v4 = malloc 12
+
+v5 = 0
+
+f_main [0][27]
+
+load v0 t0
+t0 = 3
+loadaddr v0 s11
+s11[0] = t0
+
+load v1 t0
+t0 = 1
+loadaddr v1 s11
+s11[0] = t0
+
+load v2 t0
+t0 = 2
+loadaddr v2 s11
+s11[0] = t0
+
+load v3 t0
+t0 = 3
+loadaddr v3 s11
+s11[0] = t0
+
+load v5 t0
+t0 = 0
+loadaddr v5 s11
+s11[0] = t0
+
+loadaddr v4 t0
+load v1 t1
+t0[0] = t1
+
+loadaddr v4 t0
+load v2 t1
+t0[4] = t1
+
+loadaddr v4 t0
+load v3 t1
+t0[8] = t1
+
+load 6 t0
+t0 = 0
+loadaddr 6 s11
+s11[0] = t0
+
+load 7 t0
+load 6 t1
+t0 = t1
+loadaddr 7 s11
+s11[0] = t0
+
+load 8 t0
+t0 = 0
+loadaddr 8 s11
+s11[0] = t0
+
+load 9 t0
+load 8 t1
+t0 = t1
+loadaddr 9 s11
+s11[0] = t0
+
+l0:
+
+load 10 t0
+load 7 t1
+t0 = t1
+loadaddr 10 s11
+s11[0] = t0
+
+load 11 t0
+t0 = 3
+loadaddr 11 s11
+s11[0] = t0
+
+load 12 t0
+load 10 t1
+load 11 t2
+t0 = t1 < t2
+loadaddr 12 s11
+s11[0] = t0
+
+load 12 t0
+s11 = 0
+if t0 == s11 goto l1
+
+load 13 t0
+t0 = 0
+loadaddr 13 s11
+s11[0] = t0
+
+load 9 t0
+load 13 t1
+t0 = t1
+loadaddr 9 s11
+s11[0] = t0
+
+l2:
+
+load 14 t0
+load 9 t1
+t0 = t1
+loadaddr 14 s11
+s11[0] = t0
+
+load 15 t0
+t0 = 3
+loadaddr 15 s11
+s11[0] = t0
+
+load 16 t0
+load 14 t1
+load 15 t2
+t0 = t1 < t2
+loadaddr 16 s11
+s11[0] = t0
+
+load 16 t0
+s11 = 0
+if t0 == s11 goto l3
+
+load 17 t0
+load 9 t1
+t0 = t1
+loadaddr 17 s11
+s11[0] = t0
+
+load 18 t0
+load 17 t1
+t0 = t1
+loadaddr 18 s11
+s11[0] = t0
+
+load 18 t0
+load 18 t1
+s11 = 4
+t0 = t1 * s11
+loadaddr 18 s11
+s11[0] = t0
+
+load 18 t0
+loadaddr v4 t1
+load 18 t2
+s11 = t1 + t2
+t0 = s11[0]
+loadaddr 18 s11
+s11[0] = t0
+
+load 18 t0
+a0 = t0
+
+call f_putint
+
+load 19 t0
+load 9 t1
+t0 = t1
+loadaddr 19 s11
+s11[0] = t0
+
+load 20 t0
+t0 = 1
+loadaddr 20 s11
+s11[0] = t0
+
+load 21 t0
+load 19 t1
+load 20 t2
+t0 = t1 + t2
+loadaddr 21 s11
+s11[0] = t0
+
+load 9 t0
+load 21 t1
+t0 = t1
+loadaddr 9 s11
+s11[0] = t0
+
+goto l2
+
+l3:
+
+load 22 t0
+load 7 t1
+t0 = t1
+loadaddr 22 s11
+s11[0] = t0
+
+load 23 t0
+t0 = 1
+loadaddr 23 s11
+s11[0] = t0
+
+load 24 t0
+load 22 t1
+load 23 t2
+t0 = t1 + t2
+loadaddr 24 s11
+s11[0] = t0
+
+load 7 t0
+load 24 t1
+t0 = t1
+loadaddr 7 s11
+s11[0] = t0
+
+goto l0
+
+l1:
+
+load 25 t0
+t0 = 0
+loadaddr 25 s11
+s11[0] = t0
+
+load 26 t0
+load 25 t1
+t0 = t1
+loadaddr 26 s11
+s11[0] = t0
+
+load 26 t0
+a0 = t0
+return
+
+end f_main
