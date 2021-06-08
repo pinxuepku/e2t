@@ -658,21 +658,9 @@ void codeGen_10(Node* func, Node* st, int index,vector<Symbol*>&global){
 
 void codeGen_11(Node* func, Node* st, int index,vector<Symbol*>&global){
     param_count=0;
+    //ident=call funcname
     int len=func->local_symtab.size();
-    /*
-    for(int i=0;i<len;i++){
-        if(func->local_symtab[i]->reg==0){
-            continue;
-        }else if(func->local_symtab[i]->param_index>0){
-            continue;
-        }else if(func->local_symtab[i]->is_global==1){
-            continue;
-        }else if(func->local_symtab[i]->array_size>0){
-            continue;
-        }
-
-        cout<<"store "<<regs[func->local_symtab[i]->reg]<<" "<<func->local_symtab[i]->stack_location<<endl;
-    }*/
+   
     int i0=get_index(func,st->children[0]->name);
     int reg0=func->local_symtab[i0]->reg;
     if(reg0==0){ // 说明不是参数，可能是全局变量或者局部变量
@@ -694,27 +682,13 @@ void codeGen_11(Node* func, Node* st, int index,vector<Symbol*>&global){
         cout<<"s11[0] = "<<regs[reg0]<<endl;
     }
     clear();
-    /*
-    for(int i=0;i<len;i++){
-        if(func->local_symtab[i]->reg==0){
-            continue;
-        }else if(func->local_symtab[i]->reg==reg0){
-            continue;
-        }else if(func->local_symtab[i]->is_global==1){
-            if(func->local_symtab[i]->array_size==0){
-                cout<<"load v"<<func->local_symtab[i]->global_index<<" "<<regs[func->local_symtab[i]->reg]<<endl;
-            }else{
-                cout<<"loadaddr v"<<func->local_symtab[i]->global_index<<" "<<regs[func->local_symtab[i]->reg]<<endl;
-            }
-        }else{
-            if(func->local_symtab[i]->array_size==0){
-                cout<<"load "<<func->local_symtab[i]->stack_location<<" "<<regs[func->local_symtab[i]->reg]<<endl;
-            }else{
-                cout<<"loadaddr "<<func->local_symtab[i]->stack_location<<" "<<regs[func->local_symtab[i]->reg]<<endl;
-            }
+    
+    for(int i=20;i<=27;i++){
+        if(record[i]!=-1){
+            cout<<"load "<<" "<<func->local_symtab[record[i]]->stack_location<<" "<<regs[i]<<endl;
         }
     }
-    */
+    
     cout<<endl;
 }
 
