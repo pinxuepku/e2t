@@ -369,7 +369,8 @@ label : T_LABEL{
 
 %%
 int main(int argc, char** argv){
-	yyin=fopen(argv[1],"r");
+	yyin=fopen(argv[2],"r");
+	freopen(argv[4],"w",stdout);
 	//cout<<-1<<endl;
 	yyparse();
 	//cout<<0<<endl;
