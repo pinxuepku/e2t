@@ -1,0 +1,144 @@
+f_factorial [1][13]
+
+load 1 t0
+t0 = a0
+loadaddr 1 s11
+s11[0] = t0
+
+load 2 t0
+t0 = 1
+loadaddr 2 s11
+s11[0] = t0
+
+load 3 t0
+load 1 t1
+load 2 t2
+t0 = t1 == t2
+loadaddr 3 s11
+s11[0] = t0
+
+load 3 t0
+s11 = 0
+if t0 == s11 goto l0
+
+load 4 t0
+t0 = 1
+loadaddr 4 s11
+s11[0] = t0
+
+load 5 t0
+load 4 t1
+t0 = t1
+loadaddr 5 s11
+s11[0] = t0
+
+load 5 t0
+a0 = t0
+return
+
+goto l1
+
+l0:
+
+load 6 t0
+t0 = a0
+loadaddr 6 s11
+s11[0] = t0
+
+load 7 t0
+t0 = 1
+loadaddr 7 s11
+s11[0] = t0
+
+load 8 t0
+load 6 t1
+load 7 t2
+t0 = t1 - t2
+loadaddr 8 s11
+s11[0] = t0
+
+store a0 0
+load 8 t0
+a0 = t0
+
+load 9 t0
+call f_factorial
+t0 = a0
+loadaddr 9 s11
+s11[0] = t0
+load  0 a0
+
+load 10 t0
+t0 = a0
+loadaddr 10 s11
+s11[0] = t0
+
+load 11 t0
+load 9 t1
+load 10 t2
+t0 = t1 * t2
+loadaddr 11 s11
+s11[0] = t0
+
+load 12 t0
+load 11 t1
+t0 = t1
+loadaddr 12 s11
+s11[0] = t0
+
+load 12 t0
+a0 = t0
+return
+
+l1:
+
+end f_factorial
+f_main [0][6]
+
+load 0 t0
+t0 = 10
+loadaddr 0 s11
+s11[0] = t0
+
+load 1 t0
+load 0 t1
+t0 = t1
+loadaddr 1 s11
+s11[0] = t0
+
+load 2 t0
+load 1 t1
+t0 = t1
+loadaddr 2 s11
+s11[0] = t0
+
+load 2 t0
+a0 = t0
+
+load 3 t0
+call f_factorial
+t0 = a0
+loadaddr 3 s11
+s11[0] = t0
+
+load 3 t0
+a0 = t0
+
+call f_putint
+
+load 4 t0
+t0 = 0
+loadaddr 4 s11
+s11[0] = t0
+
+load 5 t0
+load 4 t1
+t0 = t1
+loadaddr 5 s11
+s11[0] = t0
+
+load 5 t0
+a0 = t0
+return
+
+end f_main

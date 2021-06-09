@@ -1,0 +1,51 @@
+f_factorial[1]
+var t0
+var t1
+var t2
+var t3
+var t4
+var t5
+var t6
+var t7
+var t8
+var t9
+var t10
+var t11
+t0 = p0
+t1 = 1
+t2 = t0 == t1
+if t2 == 0 goto l0
+t3 = 1
+t4 = t3
+return t4
+goto l1
+l0:
+t5 = p0
+t6 = 1
+t7 = t5 - t6
+param t7
+t8 = call f_factorial
+t9 = p0
+t10 = t8 * t9
+t11 = t10
+return t11
+l1:
+end f_factorial
+f_main[0]
+var t12
+var T0
+var t13
+var t14
+var t15
+var t16
+t12 = 10
+T0 = t12
+t13 = T0
+param t13
+t14 = call f_factorial
+param t14
+call f_putint
+t15 = 0
+t16 = t15
+return t16
+end f_main

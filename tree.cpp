@@ -500,7 +500,7 @@ void codeGen_4(Node* func, Node*st, int index,vector<Symbol*>&global){
                 }
             }
         }
-        cout<<"s11 = "<<regs[reg0]<<" + "<<4*st->children[1]->children[0]->val<<endl;
+        cout<<"s11 = "<<regs[reg0]<<" + "<<st->children[1]->children[0]->val<<endl;
         cout<<"s11[0] = "<<regs[reg2]<<endl;
     }else if(st->children[1]->rv_type==1&&st->children[2]->rv_type==2){
         int i1=get_index(func,st->children[1]->children[0]->name);
