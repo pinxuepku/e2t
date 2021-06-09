@@ -376,6 +376,8 @@ int main(int argc, char** argv){
 	freopen(argv[5],"w",stdout);
 	//cout<<-1<<endl;
 	yyparse();
+	//printTree(root);
+	//cout<<"here"<<endl;
 	//cout<<0<<endl;
 	init_symtab(root,global);
 	//cout<<1<<endl;

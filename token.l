@@ -11,7 +11,7 @@ static FILE* yyparse_file_ptr;
 %option noyywrap yylineno
 
 digit       [0-9]
-number      {digit}+
+number      "-"?{digit}+
 label       l{number}
 letter      [a-zA-Z_]
 identifier  {letter}({letter}|{digit})*
