@@ -1,0 +1,237 @@
+f_wc [2][12]
+
+load 3 t0
+t0 = 0
+loadaddr 3 s11
+s11[0] = t0
+
+load 2 t0
+t0 = 0
+loadaddr 2 s11
+s11[0] = t0
+
+load 4 t0
+t0 = 0
+loadaddr 4 s11
+s11[0] = t0
+
+l0:
+
+load 5 t0
+load 3 t1
+t0 = t1 < a1
+loadaddr 5 s11
+s11[0] = t0
+
+load 5 t0
+s11 = 0
+if t0 == s11 goto l4
+
+load 6 t0
+load 3 t1
+s11 = 4
+t0 = t1 * s11
+loadaddr 6 s11
+s11[0] = t0
+
+load 7 t0
+load 6 t1
+s11 = a0 + t1
+t0 = s11[0]
+loadaddr 7 s11
+s11[0] = t0
+
+load 8 t0
+load 7 t1
+s11 = 32
+t0 = t1 != s11
+loadaddr 8 s11
+s11[0] = t0
+
+load 8 t0
+s11 = 0
+if t0 == s11 goto l2
+
+load 9 t0
+load 2 t1
+s11 = 0
+t0 = t1 == s11
+loadaddr 9 s11
+s11[0] = t0
+
+load 9 t0
+s11 = 0
+if t0 == s11 goto l1
+
+load 10 t0
+load 4 t1
+s11 = 1
+t0 = t1 + s11
+loadaddr 10 s11
+s11[0] = t0
+
+load 4 t0
+load 10 t1
+t0 = t1
+loadaddr 4 s11
+s11[0] = t0
+
+load 2 t0
+t0 = 1
+loadaddr 2 s11
+s11[0] = t0
+
+l1:
+
+goto l3
+
+l2:
+
+load 2 t0
+t0 = 0
+loadaddr 2 s11
+s11[0] = t0
+
+l3:
+
+load 11 t0
+load 3 t1
+s11 = 1
+t0 = t1 + s11
+loadaddr 11 s11
+s11[0] = t0
+
+load 3 t0
+load 11 t1
+t0 = t1
+loadaddr 3 s11
+s11[0] = t0
+
+goto l0
+
+l4:
+
+load 4 t0
+a0 = t0
+return
+
+end f_wc
+f_main [0][511]
+
+load 501 t0
+t0 = 0
+loadaddr 501 s11
+s11[0] = t0
+
+load 500 t0
+t0 = 0
+loadaddr 500 s11
+s11[0] = t0
+
+l5:
+
+load 502 t0
+load 500 t1
+s11 = 10
+t0 = t1 != s11
+loadaddr 502 s11
+s11[0] = t0
+
+load 502 t0
+s11 = 0
+if t0 == s11 goto l6
+
+load 503 t0
+call f_getch
+t0 = a0
+loadaddr 503 s11
+s11[0] = t0
+
+load 500 t0
+load 503 t1
+t0 = t1
+loadaddr 500 s11
+s11[0] = t0
+
+load 504 t0
+load 501 t1
+s11 = 4
+t0 = t1 * s11
+loadaddr 504 s11
+s11[0] = t0
+
+loadaddr 0 t0
+load 504 t1
+load 500 t2
+s11 = t0 + t1
+s11[0] = t2
+
+load 505 t0
+load 501 t1
+s11 = 1
+t0 = t1 + s11
+loadaddr 505 s11
+s11[0] = t0
+
+load 501 t0
+load 505 t1
+t0 = t1
+loadaddr 501 s11
+s11[0] = t0
+
+goto l5
+
+l6:
+
+load 506 t0
+loadaddr 0 t1
+s11 = 0
+t0 = t1 + s11
+loadaddr 506 s11
+s11[0] = t0
+
+load 507 t0
+load 506 t1
+t0 = t1
+loadaddr 507 s11
+s11[0] = t0
+
+load 508 t0
+load 501 t1
+t0 = t1
+loadaddr 508 s11
+s11[0] = t0
+
+load 507 t0
+a0 = t0
+
+load 508 t0
+a1 = t0
+
+load 509 t0
+call f_wc
+t0 = a0
+loadaddr 509 s11
+s11[0] = t0
+
+load 500 t0
+load 509 t1
+t0 = t1
+loadaddr 500 s11
+s11[0] = t0
+
+load 510 t0
+load 500 t1
+t0 = t1
+loadaddr 510 s11
+s11[0] = t0
+
+load 510 t0
+a0 = t0
+
+call f_putint
+
+a0 = 0
+return
+
+end f_main

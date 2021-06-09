@@ -1,0 +1,104 @@
+v0 = 0
+
+f_main [0][10]
+
+load 3 t0
+call f_getint
+t0 = a0
+loadaddr 3 s11
+s11[0] = t0
+
+load 1 t0
+load 3 t1
+t0 = t1
+loadaddr 1 s11
+s11[0] = t0
+
+load 4 t0
+call f_getint
+t0 = a0
+loadaddr 4 s11
+s11[0] = t0
+
+load 2 t0
+load 4 t1
+t0 = t1
+loadaddr 2 s11
+s11[0] = t0
+
+load 5 t0
+load 1 t1
+t0 = t1
+loadaddr 5 s11
+s11[0] = t0
+
+load 1 t0
+load 2 t1
+t0 = t1
+loadaddr 1 s11
+s11[0] = t0
+
+load 2 t0
+load 5 t1
+t0 = t1
+loadaddr 2 s11
+s11[0] = t0
+
+load 6 t0
+load 1 t1
+t0 = t1
+loadaddr 6 s11
+s11[0] = t0
+
+load 6 t0
+a0 = t0
+
+call f_putint
+
+load 5 t0
+t0 = 10
+loadaddr 5 s11
+s11[0] = t0
+
+load 7 t0
+load 5 t1
+t0 = t1
+loadaddr 7 s11
+s11[0] = t0
+
+load 7 t0
+a0 = t0
+
+call f_putch
+
+load 8 t0
+load 2 t1
+t0 = t1
+loadaddr 8 s11
+s11[0] = t0
+
+load 8 t0
+a0 = t0
+
+call f_putint
+
+load 5 t0
+t0 = 10
+loadaddr 5 s11
+s11[0] = t0
+
+load 9 t0
+load 5 t1
+t0 = t1
+loadaddr 9 s11
+s11[0] = t0
+
+load 9 t0
+a0 = t0
+
+call f_putch
+
+a0 = 0
+return
+
+end f_main

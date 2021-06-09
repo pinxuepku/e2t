@@ -18,9 +18,6 @@
 	{
 		printf("Error: %s\n", s);
 	}
-	
-
-
 %}
 %union
 {
@@ -372,16 +369,10 @@ label : T_LABEL{
 
 %%
 int main(int argc, char** argv){
-	yyin=fopen(argv[3],"r");
-	freopen(argv[5],"w",stdout);
-	//cout<<-1<<endl;
+	yyin=fopen(argv[1],"r");
+	//freopen(argv[5],"w",stdout);
 	yyparse();
-	//printTree(root);
-	//cout<<"here"<<endl;
-	//cout<<0<<endl;
 	init_symtab(root,global);
-	//cout<<1<<endl;
 	codeGen(root,global);
-	//cout<<2<<endl;
 	return 0;
 }

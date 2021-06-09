@@ -667,18 +667,19 @@ void codeGen_9(Node* func, Node* st, int index,vector<Symbol*>&global){
                 }else{
                     cout<<"loadaddr v"<<func->local_symtab[i0]->global_index<<" "<<regs[reg0]<<endl;
                 }
+                cout<<regs[param_count+20]<<" = "<<regs[reg0]<<endl;
             }else{
                 if(func->local_symtab[i0]->is_array==0){
                     cout<<"load "<<func->local_symtab[i0]->stack_location<<" "<<regs[reg0]<<endl;
                 }else{
                     cout<<"loadaddr "<<func->local_symtab[i0]->stack_location<<" "<<regs[reg0]<<endl;
                 }
+                cout<<regs[param_count+20]<<" = "<<regs[reg0]<<endl;
             }
-        }
-        if(reg0>=20&&reg0<=27){//没想清楚
-            cout<<"load "<<func->local_symtab[record[reg0]]->stack_location<<" "<<regs[reg0]<<endl;
         }else{
-            cout<<regs[param_count+20]<<" = "<<regs[reg0]<<endl;
+            //canshu 
+            cout<<"load "<<func->local_symtab[record[reg0]]<<" s11"<<endl;
+            cout<<regs[param_count+20]<<" = s11"<<endl;
         }
     }else{
         cout<<regs[param_count]<<" = "<<st->children[0]->children[0]->val<<endl;
@@ -693,6 +694,11 @@ void codeGen_10(Node* func, Node* st, int index,vector<Symbol*>&global){
     param_count=0;
     cout<<"call "<<st->children[0]->name<<endl;
     cout<<endl;
+    for(int i=20;i<=27;i++){
+        if(record[i]!=-1){
+            cout<<"load "<<" "<<func->local_symtab[record[i]]->stack_location<<" "<<regs[i]<<endl;
+        }
+    }
 }
 
 void codeGen_11(Node* func, Node* st, int index,vector<Symbol*>&global){
@@ -745,8 +751,12 @@ void codeGen_12(Node* func, Node*st, int index,vector<Symbol*>&global){
             }else{
                 cout<<"load "<<func->local_symtab[i0]->stack_location<<" "<<regs[reg0]<<endl;
             }
+            cout<<"a0 = "<<regs[reg0]<<endl;
+        }else{
+            //canshu
+            cout<<"a0 = "<<regs[reg0]<<endl;
         }
-        cout<<"a0 = "<<regs[reg0]<<endl;
+        
     }
     clear();
     cout<<"return"<<endl;

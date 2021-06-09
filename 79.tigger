@@ -1,0 +1,128 @@
+v0 = 0
+
+f_gcd [2][9]
+
+load 5 t0
+t0 = a0 < a1
+loadaddr 5 s11
+s11[0] = t0
+
+load 5 t0
+s11 = 0
+if t0 == s11 goto l0
+
+load 3 t0
+t0 = a0
+loadaddr 3 s11
+s11[0] = t0
+
+a0 = a1
+
+load 3 t0
+a1 = t0
+
+l0:
+
+load 6 t0
+t0 = a0 % a1
+loadaddr 6 s11
+s11[0] = t0
+
+load 4 t0
+load 6 t1
+t0 = t1
+loadaddr 4 s11
+s11[0] = t0
+
+l1:
+
+load 7 t0
+load 4 t1
+s11 = 0
+t0 = t1 != s11
+loadaddr 7 s11
+s11[0] = t0
+
+load 7 t0
+s11 = 0
+if t0 == s11 goto l2
+
+a0 = a1
+
+load 4 t0
+a1 = t0
+
+load 8 t0
+t0 = a0 % a1
+loadaddr 8 s11
+s11[0] = t0
+
+load 4 t0
+load 8 t1
+t0 = t1
+loadaddr 4 s11
+s11[0] = t0
+
+goto l1
+
+l2:
+
+a0 = a1
+return
+
+end f_gcd
+f_main [0][8]
+
+load 3 t0
+call f_getint
+t0 = a0
+loadaddr 3 s11
+s11[0] = t0
+
+load 1 t0
+load 3 t1
+t0 = t1
+loadaddr 1 s11
+s11[0] = t0
+
+load 4 t0
+call f_getint
+t0 = a0
+loadaddr 4 s11
+s11[0] = t0
+
+load 2 t0
+load 4 t1
+t0 = t1
+loadaddr 2 s11
+s11[0] = t0
+
+load 5 t0
+load 1 t1
+t0 = t1
+loadaddr 5 s11
+s11[0] = t0
+
+load 6 t0
+load 2 t1
+t0 = t1
+loadaddr 6 s11
+s11[0] = t0
+
+load 5 t0
+a0 = t0
+
+load 6 t0
+a1 = t0
+
+load 7 t0
+call f_gcd
+t0 = a0
+loadaddr 7 s11
+s11[0] = t0
+
+load 7 t0
+a0 = t0
+return
+
+end f_main

@@ -1,0 +1,70 @@
+f_main [0][6]
+
+load 1 t0
+t0 = 0
+loadaddr 1 s11
+s11[0] = t0
+
+load 0 t0
+t0 = 0
+loadaddr 0 s11
+s11[0] = t0
+
+l0:
+
+load 2 t0
+load 0 t1
+s11 = 21
+t0 = t1 < s11
+loadaddr 2 s11
+s11[0] = t0
+
+load 2 t0
+s11 = 0
+if t0 == s11 goto l1
+
+load 3 t0
+load 1 t1
+load 0 t2
+t0 = t1 + t2
+loadaddr 3 s11
+s11[0] = t0
+
+load 1 t0
+load 3 t1
+t0 = t1
+loadaddr 1 s11
+s11[0] = t0
+
+load 4 t0
+load 0 t1
+s11 = 1
+t0 = t1 + s11
+loadaddr 4 s11
+s11[0] = t0
+
+load 0 t0
+load 4 t1
+t0 = t1
+loadaddr 0 s11
+s11[0] = t0
+
+goto l0
+
+l1:
+
+load 5 t0
+load 1 t1
+t0 = t1
+loadaddr 5 s11
+s11[0] = t0
+
+load 5 t0
+a0 = t0
+
+call f_putint
+
+a0 = 0
+return
+
+end f_main
