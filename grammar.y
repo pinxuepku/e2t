@@ -369,10 +369,14 @@ label : T_LABEL{
 
 %%
 int main(int argc, char** argv){
-	yyin=fopen(argv[1],"r");
-	//freopen(argv[5],"w",stdout);
+	yyin=fopen(argv[3],"r");
+	freopen(argv[5],"w",stdout);
 	yyparse();
 	init_symtab(root,global);
 	codeGen(root,global);
 	return 0;
 }
+
+
+
+
