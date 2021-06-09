@@ -117,6 +117,14 @@ void init_symtab(Node* r,vector<Symbol*>&global){
 }
 
 
+void print_symtab(Node* func){
+    int len=func->local_symtab.size();
+    for(int i=0;i<len;i++){
+        cout<<"i="<<i<<",  name="<<func->local_symtab[i]->name<<", stack position="<<func->local_symtab[i]->stack_location<<endl;
+    }
+}
+
+
 void codeGen(Node* r,vector<Symbol*>&global){
     int len=r->mem.size();
     for(int i=0;i<len;i++){
@@ -125,6 +133,7 @@ void codeGen(Node* r,vector<Symbol*>&global){
             continue;
         }
         if(r->mem[i]->node_type==NODE_TYPE_FUNCDEF){
+            //print_symtab(r->mem[i]);
             Node* func=r->mem[i];
             Node* statements=func->children[2];
             int len2=statements->mem.size();
@@ -275,7 +284,12 @@ void codeGen_1(Node* func, Node* st, int index,vector<Symbol*>&global){
             if(func->local_symtab[i1]->is_global==1){
                 cout<<"load v"<<func->local_symtab[i1]->global_index<<" "<<regs[reg1]<<endl;
             }else{
-                cout<<"load "<<func->local_symtab[i1]->stack_location<<" "<<regs[reg1]<<endl;
+                if(func->local_symtab[i1]->is_array==0){
+                    cout<<"load "<<func->local_symtab[i1]->stack_location<<" "<<regs[reg1]<<endl;
+                }
+                else{
+                    cout<<"loadaddr "<<func->local_symtab[i1]->stack_location<<" "<<regs[reg1]<<endl;
+                }
             }
         }
         int i2=get_index(func,st->children[3]->children[0]->name);
@@ -297,7 +311,12 @@ void codeGen_1(Node* func, Node* st, int index,vector<Symbol*>&global){
             if(func->local_symtab[i1]->is_global==1){
                 cout<<"load v"<<func->local_symtab[i1]->global_index<<" "<<regs[reg1]<<endl;
             }else{
-                cout<<"load "<<func->local_symtab[i1]->stack_location<<" "<<regs[reg1]<<endl;
+                if(func->local_symtab[i1]->is_array==0){
+                    cout<<"load "<<func->local_symtab[i1]->stack_location<<" "<<regs[reg1]<<endl;
+                }
+                else{
+                    cout<<"loadaddr "<<func->local_symtab[i1]->stack_location<<" "<<regs[reg1]<<endl;
+                }
             }
         }
         cout<<"s11 = "<<st->children[3]->children[0]->val<<endl;
@@ -378,6 +397,7 @@ void codeGen_2(Node* func, Node* st, int index,vector<Symbol*>&global){
 }
 
 void codeGen_3(Node* func, Node* st, int index,vector<Symbol*>&global){
+    //cout<<"????????????"<<endl;
     //ident T_ASSIGN rightval
     int i0=get_index(func,st->children[0]->name);
     int reg0=func->local_symtab[i0]->reg;
@@ -397,7 +417,13 @@ void codeGen_3(Node* func, Node* st, int index,vector<Symbol*>&global){
             if(func->local_symtab[i1]->is_global==1){
                 cout<<"load v"<<func->local_symtab[i1]->global_index<<" "<<regs[reg1]<<endl;
             }else{
-                cout<<"load "<<func->local_symtab[i1]->stack_location<<" "<<regs[reg1]<<endl;
+                //可能是地址
+                if(func->local_symtab[i1]->is_array==0){
+                    cout<<"load "<<func->local_symtab[i1]->stack_location<<" "<<regs[reg1]<<endl;
+                }
+                else{
+                    cout<<"loadaddr "<<func->local_symtab[i1]->stack_location<<" "<<regs[reg1]<<endl;
+                }
             }
         }
         cout<<regs[reg0]<<" = "<<regs[reg1]<<endl;
@@ -425,7 +451,7 @@ void codeGen_4(Node* func, Node*st, int index,vector<Symbol*>&global){
         if(func->local_symtab[i0]->is_global==1){
             cout<<"loadaddr v"<<func->local_symtab[i0]->global_index<<" "<<regs[reg0]<<endl;
         }else{
-            cout<<"load "<<func->local_symtab[i0]->stack_location<<" "<<regs[reg0]<<endl;
+            cout<<"loadaddr "<<func->local_symtab[i0]->stack_location<<" "<<regs[reg0]<<endl;
         }//注意！！
     }
 
@@ -447,7 +473,12 @@ void codeGen_4(Node* func, Node*st, int index,vector<Symbol*>&global){
             if(func->local_symtab[i2]->is_global==1){
                 cout<<"load v"<<func->local_symtab[i2]->global_index<<" "<<regs[reg2]<<endl;
             }else{
-                cout<<"load "<<func->local_symtab[i2]->stack_location<<" "<<regs[reg2]<<endl;
+                if(func->local_symtab[i2]->is_array==0){
+                    cout<<"load "<<func->local_symtab[i2]->stack_location<<" "<<regs[reg2]<<endl;
+                }
+                else{
+                    cout<<"loadaddr "<<func->local_symtab[i2]->stack_location<<" "<<regs[reg2]<<endl;
+                }
             }
         }
 
@@ -461,10 +492,16 @@ void codeGen_4(Node* func, Node*st, int index,vector<Symbol*>&global){
             if(func->local_symtab[i2]->is_global==1){
                 cout<<"load v"<<func->local_symtab[i2]->global_index<<" "<<regs[reg2]<<endl;
             }else{
-                cout<<"load "<<func->local_symtab[i2]->stack_location<<" "<<regs[reg2]<<endl;
+                if(func->local_symtab[i2]->is_array==0){
+                    cout<<"load "<<func->local_symtab[i2]->stack_location<<" "<<regs[reg2]<<endl;
+                }
+                else{
+                    cout<<"loadaddr "<<func->local_symtab[i2]->stack_location<<" "<<regs[reg2]<<endl;
+                }
             }
         }
-        cout<<regs[reg0]<<"["<<st->children[1]->children[0]->val<<"] = "<<regs[reg2]<<endl;
+        cout<<"s11 = "<<regs[reg0]<<" + "<<4*st->children[1]->children[0]->val<<endl;
+        cout<<"s11[0] = "<<regs[reg2]<<endl;
     }else if(st->children[1]->rv_type==1&&st->children[2]->rv_type==2){
         int i1=get_index(func,st->children[1]->children[0]->name);
         int reg1=func->local_symtab[i1]->reg;
@@ -477,10 +514,12 @@ void codeGen_4(Node* func, Node*st, int index,vector<Symbol*>&global){
             }
         }
         cout<<"s11 = "<<regs[reg0]<<" + "<<regs[reg1]<<endl;
-        cout<<"s11[0] = "<<st->children[2]->children[0]->val<<endl;
+        cout<<"s10 = "<<st->children[2]->children[0]->val<<endl;
+        cout<<"s11[0] = s10"<<endl;
     }else if(st->children[1]->rv_type==2&&st->children[2]->rv_type==2){
-        cout<<"s11 = "<<st->children[2]->children[0]->val<<endl;
-        cout<<regs[reg0]<<"["<<st->children[1]->children[0]->val<<"] = s11"<<endl;
+        cout<<"s11 = "<<regs[reg0]<<" + "<<st->children[1]->children[0]->val<<endl;
+        cout<<"s10 = "<<st->children[2]->children[0]->val<<endl;
+        cout<<"s11[0] = s10"<<endl;
     }
     clear();
     cout<<endl;
@@ -505,8 +544,8 @@ void codeGen_5(Node* func, Node* st, int index,vector<Symbol*>&global){
         if(func->local_symtab[i1]->is_global==1){
             cout<<"loadaddr v"<<func->local_symtab[i1]->global_index<<" "<<regs[reg1]<<endl;
         }else{
-            cout<<"load "<<func->local_symtab[i1]->stack_location<<" "<<regs[reg1]<<endl;
-        }//注意！
+            cout<<"loadaddr "<<func->local_symtab[i1]->stack_location<<" "<<regs[reg1]<<endl;
+        }
     }
 
     if(st->children[2]->rv_type==1){

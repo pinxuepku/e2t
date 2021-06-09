@@ -82,6 +82,7 @@ static int global_var_num=0;
 static int param_count=0;
 
 int get_index(Node*,string); 
+void print_symtab(Node*);
 int allocate(Node*,int);
 void codeGen(Node*,vector<Symbol*>&);
 void codeGen_global_declare(Node*,vector<Symbol*>&);

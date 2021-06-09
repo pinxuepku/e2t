@@ -1,0 +1,952 @@
+v0 = 0
+
+f_Merge [4][77]
+
+load 6 t0
+t0 = a2 - a1
+loadaddr 6 s11
+s11[0] = t0
+
+load 7 t0
+load 6 t1
+s11 = 1
+t0 = t1 + s11
+loadaddr 7 s11
+s11[0] = t0
+
+load 5 t0
+load 7 t1
+t0 = t1
+loadaddr 5 s11
+s11[0] = t0
+
+load 9 t0
+t0 = a3 - a2
+loadaddr 9 s11
+s11[0] = t0
+
+load 8 t0
+load 9 t1
+t0 = t1
+loadaddr 8 s11
+s11[0] = t0
+
+load 30 t0
+t0 = 0
+loadaddr 30 s11
+s11[0] = t0
+
+load 31 t0
+t0 = 0
+loadaddr 31 s11
+s11[0] = t0
+
+l0:
+
+load 32 t0
+load 30 t1
+load 5 t2
+t0 = t1 < t2
+loadaddr 32 s11
+s11[0] = t0
+
+load 32 t0
+s11 = 0
+if t0 == s11 goto l1
+
+load 33 t0
+load 30 t1
+s11 = 4
+t0 = t1 * s11
+loadaddr 33 s11
+s11[0] = t0
+
+load 34 t0
+load 30 t1
+t0 = t1 + a1
+loadaddr 34 s11
+s11[0] = t0
+
+load 35 t0
+load 34 t1
+s11 = 4
+t0 = t1 * s11
+loadaddr 35 s11
+s11[0] = t0
+
+load 36 t0
+load 35 t1
+s11 = a0 + t1
+t0 = s11[0]
+loadaddr 36 s11
+s11[0] = t0
+
+loadaddr 10 t0
+load 33 t1
+load 36 t2
+s11 = t0 + t1
+s11[0] = t2
+
+load 37 t0
+load 30 t1
+s11 = 1
+t0 = t1 + s11
+loadaddr 37 s11
+s11[0] = t0
+
+load 30 t0
+load 37 t1
+t0 = t1
+loadaddr 30 s11
+s11[0] = t0
+
+goto l0
+
+l1:
+
+l2:
+
+load 38 t0
+load 31 t1
+load 8 t2
+t0 = t1 < t2
+loadaddr 38 s11
+s11[0] = t0
+
+load 38 t0
+s11 = 0
+if t0 == s11 goto l3
+
+load 39 t0
+load 31 t1
+s11 = 4
+t0 = t1 * s11
+loadaddr 39 s11
+s11[0] = t0
+
+load 40 t0
+load 31 t1
+t0 = t1 + a2
+loadaddr 40 s11
+s11[0] = t0
+
+load 41 t0
+load 40 t1
+s11 = 1
+t0 = t1 + s11
+loadaddr 41 s11
+s11[0] = t0
+
+load 42 t0
+load 41 t1
+s11 = 4
+t0 = t1 * s11
+loadaddr 42 s11
+s11[0] = t0
+
+load 43 t0
+load 42 t1
+s11 = a0 + t1
+t0 = s11[0]
+loadaddr 43 s11
+s11[0] = t0
+
+loadaddr 20 t0
+load 39 t1
+load 43 t2
+s11 = t0 + t1
+s11[0] = t2
+
+load 44 t0
+load 31 t1
+s11 = 1
+t0 = t1 + s11
+loadaddr 44 s11
+s11[0] = t0
+
+load 31 t0
+load 44 t1
+t0 = t1
+loadaddr 31 s11
+s11[0] = t0
+
+goto l2
+
+l3:
+
+load 30 t0
+t0 = 0
+loadaddr 30 s11
+s11[0] = t0
+
+load 31 t0
+t0 = 0
+loadaddr 31 s11
+s11[0] = t0
+
+load 45 t0
+t0 = a1
+loadaddr 45 s11
+s11[0] = t0
+
+l4:
+
+load 46 t0
+load 30 t1
+load 5 t2
+t0 = t1 != t2
+loadaddr 46 s11
+s11[0] = t0
+
+load 46 t0
+s11 = 0
+if t0 == s11 goto l5
+
+load 48 t0
+load 31 t1
+load 8 t2
+t0 = t1 != t2
+loadaddr 48 s11
+s11[0] = t0
+
+load 48 t0
+s11 = 0
+if t0 == s11 goto l5
+
+load 47 t0
+t0 = 1
+loadaddr 47 s11
+s11[0] = t0
+
+goto l6
+
+l5:
+
+load 47 t0
+t0 = 0
+loadaddr 47 s11
+s11[0] = t0
+
+l6:
+
+load 47 t0
+s11 = 0
+if t0 == s11 goto l9
+
+load 49 t0
+load 30 t1
+s11 = 4
+t0 = t1 * s11
+loadaddr 49 s11
+s11[0] = t0
+
+load 50 t0
+loadaddr 10 t1
+load 49 t2
+s11 = t1 + t2
+t0 = s11[0]
+loadaddr 50 s11
+s11[0] = t0
+
+load 51 t0
+load 31 t1
+s11 = 4
+t0 = t1 * s11
+loadaddr 51 s11
+s11[0] = t0
+
+load 52 t0
+loadaddr 20 t1
+load 51 t2
+s11 = t1 + t2
+t0 = s11[0]
+loadaddr 52 s11
+s11[0] = t0
+
+load 53 t0
+load 52 t1
+s11 = 1
+t0 = t1 + s11
+loadaddr 53 s11
+s11[0] = t0
+
+load 54 t0
+load 50 t1
+load 53 t2
+t0 = t1 < t2
+loadaddr 54 s11
+s11[0] = t0
+
+load 54 t0
+s11 = 0
+if t0 == s11 goto l7
+
+load 55 t0
+load 45 t1
+s11 = 4
+t0 = t1 * s11
+loadaddr 55 s11
+s11[0] = t0
+
+load 56 t0
+load 30 t1
+s11 = 4
+t0 = t1 * s11
+loadaddr 56 s11
+s11[0] = t0
+
+load 57 t0
+loadaddr 10 t1
+load 56 t2
+s11 = t1 + t2
+t0 = s11[0]
+loadaddr 57 s11
+s11[0] = t0
+
+load 55 t0
+load 57 t1
+s11 = a0 + t0
+s11[0] = t1
+
+load 58 t0
+load 45 t1
+s11 = 1
+t0 = t1 + s11
+loadaddr 58 s11
+s11[0] = t0
+
+load 45 t0
+load 58 t1
+t0 = t1
+loadaddr 45 s11
+s11[0] = t0
+
+load 59 t0
+load 30 t1
+s11 = 1
+t0 = t1 + s11
+loadaddr 59 s11
+s11[0] = t0
+
+load 30 t0
+load 59 t1
+t0 = t1
+loadaddr 30 s11
+s11[0] = t0
+
+goto l8
+
+l7:
+
+load 60 t0
+load 45 t1
+s11 = 4
+t0 = t1 * s11
+loadaddr 60 s11
+s11[0] = t0
+
+load 61 t0
+load 31 t1
+s11 = 4
+t0 = t1 * s11
+loadaddr 61 s11
+s11[0] = t0
+
+load 62 t0
+loadaddr 20 t1
+load 61 t2
+s11 = t1 + t2
+t0 = s11[0]
+loadaddr 62 s11
+s11[0] = t0
+
+load 60 t0
+load 62 t1
+s11 = a0 + t0
+s11[0] = t1
+
+load 63 t0
+load 45 t1
+s11 = 1
+t0 = t1 + s11
+loadaddr 63 s11
+s11[0] = t0
+
+load 45 t0
+load 63 t1
+t0 = t1
+loadaddr 45 s11
+s11[0] = t0
+
+load 64 t0
+load 31 t1
+s11 = 1
+t0 = t1 + s11
+loadaddr 64 s11
+s11[0] = t0
+
+load 31 t0
+load 64 t1
+t0 = t1
+loadaddr 31 s11
+s11[0] = t0
+
+l8:
+
+goto l4
+
+l9:
+
+l10:
+
+load 65 t0
+load 30 t1
+load 5 t2
+t0 = t1 < t2
+loadaddr 65 s11
+s11[0] = t0
+
+load 65 t0
+s11 = 0
+if t0 == s11 goto l11
+
+load 66 t0
+load 45 t1
+s11 = 4
+t0 = t1 * s11
+loadaddr 66 s11
+s11[0] = t0
+
+load 67 t0
+load 30 t1
+s11 = 4
+t0 = t1 * s11
+loadaddr 67 s11
+s11[0] = t0
+
+load 68 t0
+loadaddr 10 t1
+load 67 t2
+s11 = t1 + t2
+t0 = s11[0]
+loadaddr 68 s11
+s11[0] = t0
+
+load 66 t0
+load 68 t1
+s11 = a0 + t0
+s11[0] = t1
+
+load 69 t0
+load 45 t1
+s11 = 1
+t0 = t1 + s11
+loadaddr 69 s11
+s11[0] = t0
+
+load 45 t0
+load 69 t1
+t0 = t1
+loadaddr 45 s11
+s11[0] = t0
+
+load 70 t0
+load 30 t1
+s11 = 1
+t0 = t1 + s11
+loadaddr 70 s11
+s11[0] = t0
+
+load 30 t0
+load 70 t1
+t0 = t1
+loadaddr 30 s11
+s11[0] = t0
+
+goto l10
+
+l11:
+
+l12:
+
+load 71 t0
+load 31 t1
+load 8 t2
+t0 = t1 < t2
+loadaddr 71 s11
+s11[0] = t0
+
+load 71 t0
+s11 = 0
+if t0 == s11 goto l13
+
+load 72 t0
+load 45 t1
+s11 = 4
+t0 = t1 * s11
+loadaddr 72 s11
+s11[0] = t0
+
+load 73 t0
+load 31 t1
+s11 = 4
+t0 = t1 * s11
+loadaddr 73 s11
+s11[0] = t0
+
+load 74 t0
+loadaddr 20 t1
+load 73 t2
+s11 = t1 + t2
+t0 = s11[0]
+loadaddr 74 s11
+s11[0] = t0
+
+load 72 t0
+load 74 t1
+s11 = a0 + t0
+s11[0] = t1
+
+load 75 t0
+load 45 t1
+s11 = 1
+t0 = t1 + s11
+loadaddr 75 s11
+s11[0] = t0
+
+load 45 t0
+load 75 t1
+t0 = t1
+loadaddr 45 s11
+s11[0] = t0
+
+load 76 t0
+load 31 t1
+s11 = 1
+t0 = t1 + s11
+loadaddr 76 s11
+s11[0] = t0
+
+load 31 t0
+load 76 t1
+t0 = t1
+loadaddr 31 s11
+s11[0] = t0
+
+goto l12
+
+l13:
+
+a0 = 0
+return
+
+end f_Merge
+f_MergeSort [3][26]
+
+load 4 t0
+t0 = a1 < a2
+loadaddr 4 s11
+s11[0] = t0
+
+load 4 t0
+s11 = 0
+if t0 == s11 goto l14
+
+load 6 t0
+t0 = a1 + a2
+loadaddr 6 s11
+s11[0] = t0
+
+load 7 t0
+load 6 t1
+s11 = 2
+t0 = t1 / s11
+loadaddr 7 s11
+s11[0] = t0
+
+load 5 t0
+load 7 t1
+t0 = t1
+loadaddr 5 s11
+s11[0] = t0
+
+load 9 t0
+s11 = 0
+t0 = a0 + s11
+loadaddr 9 s11
+s11[0] = t0
+
+load 10 t0
+load 9 t1
+t0 = t1
+loadaddr 10 s11
+s11[0] = t0
+
+load 11 t0
+t0 = a1
+loadaddr 11 s11
+s11[0] = t0
+
+load 12 t0
+load 5 t1
+t0 = t1
+loadaddr 12 s11
+s11[0] = t0
+
+store a0 1
+store a1 2
+store a2 3
+load 10 t0
+a0 = t0
+
+load 11 t0
+a1 = t0
+
+load 12 t0
+a2 = t0
+
+load 13 t0
+call f_MergeSort
+t0 = a0
+loadaddr 13 s11
+s11[0] = t0
+load  1 a0
+load  2 a1
+load  3 a2
+
+load 8 t0
+load 13 t1
+t0 = t1
+loadaddr 8 s11
+s11[0] = t0
+
+load 14 t0
+load 5 t1
+s11 = 1
+t0 = t1 + s11
+loadaddr 14 s11
+s11[0] = t0
+
+load 8 t0
+load 14 t1
+t0 = t1
+loadaddr 8 s11
+s11[0] = t0
+
+load 15 t0
+s11 = 0
+t0 = a0 + s11
+loadaddr 15 s11
+s11[0] = t0
+
+load 16 t0
+load 15 t1
+t0 = t1
+loadaddr 16 s11
+s11[0] = t0
+
+load 17 t0
+load 8 t1
+t0 = t1
+loadaddr 17 s11
+s11[0] = t0
+
+load 18 t0
+t0 = a2
+loadaddr 18 s11
+s11[0] = t0
+
+store a0 1
+store a1 2
+store a2 3
+load 16 t0
+a0 = t0
+
+load 17 t0
+a1 = t0
+
+load 18 t0
+a2 = t0
+
+load 19 t0
+call f_MergeSort
+t0 = a0
+loadaddr 19 s11
+s11[0] = t0
+load  1 a0
+load  2 a1
+load  3 a2
+
+load 8 t0
+load 19 t1
+t0 = t1
+loadaddr 8 s11
+s11[0] = t0
+
+load 20 t0
+s11 = 0
+t0 = a0 + s11
+loadaddr 20 s11
+s11[0] = t0
+
+load 21 t0
+load 20 t1
+t0 = t1
+loadaddr 21 s11
+s11[0] = t0
+
+load 22 t0
+t0 = a1
+loadaddr 22 s11
+s11[0] = t0
+
+load 23 t0
+load 5 t1
+t0 = t1
+loadaddr 23 s11
+s11[0] = t0
+
+load 24 t0
+t0 = a2
+loadaddr 24 s11
+s11[0] = t0
+
+store a0 1
+store a1 2
+store a2 3
+load 21 t0
+a0 = t0
+
+load 22 t0
+a1 = t0
+
+load 23 t0
+a2 = t0
+
+load 24 t0
+a3 = t0
+
+load 25 t0
+call f_Merge
+t0 = a0
+loadaddr 25 s11
+s11[0] = t0
+load  1 a0
+load  2 a1
+load  3 a2
+
+load 8 t0
+load 25 t1
+t0 = t1
+loadaddr 8 s11
+s11[0] = t0
+
+l14:
+
+a0 = 0
+return
+
+end f_MergeSort
+f_main [0][25]
+
+load v0 t0
+t0 = 10
+loadaddr v0 s11
+s11[0] = t0
+
+loadaddr 1 t0
+s11 = t0 + 0
+s10 = 4
+s11[0] = s10
+
+loadaddr 1 t0
+s11 = t0 + 4
+s10 = 3
+s11[0] = s10
+
+loadaddr 1 t0
+s11 = t0 + 8
+s10 = 9
+s11[0] = s10
+
+loadaddr 1 t0
+s11 = t0 + 12
+s10 = 2
+s11[0] = s10
+
+loadaddr 1 t0
+s11 = t0 + 16
+s10 = 0
+s11[0] = s10
+
+loadaddr 1 t0
+s11 = t0 + 20
+s10 = 1
+s11[0] = s10
+
+loadaddr 1 t0
+s11 = t0 + 24
+s10 = 6
+s11[0] = s10
+
+loadaddr 1 t0
+s11 = t0 + 28
+s10 = 5
+s11[0] = s10
+
+loadaddr 1 t0
+s11 = t0 + 32
+s10 = 7
+s11[0] = s10
+
+loadaddr 1 t0
+s11 = t0 + 36
+s10 = 8
+s11[0] = s10
+
+load 11 t0
+t0 = 0
+loadaddr 11 s11
+s11[0] = t0
+
+load 13 t0
+load v0 t1
+s11 = 1
+t0 = t1 - s11
+loadaddr 13 s11
+s11[0] = t0
+
+load 12 t0
+load 13 t1
+t0 = t1
+loadaddr 12 s11
+s11[0] = t0
+
+load 14 t0
+loadaddr 1 t1
+s11 = 0
+t0 = t1 + s11
+loadaddr 14 s11
+s11[0] = t0
+
+load 15 t0
+load 14 t1
+t0 = t1
+loadaddr 15 s11
+s11[0] = t0
+
+load 16 t0
+load 11 t1
+t0 = t1
+loadaddr 16 s11
+s11[0] = t0
+
+load 17 t0
+load 12 t1
+t0 = t1
+loadaddr 17 s11
+s11[0] = t0
+
+load 15 t0
+a0 = t0
+
+load 16 t0
+a1 = t0
+
+load 17 t0
+a2 = t0
+
+load 18 t0
+call f_MergeSort
+t0 = a0
+loadaddr 18 s11
+s11[0] = t0
+
+load 11 t0
+load 18 t1
+t0 = t1
+loadaddr 11 s11
+s11[0] = t0
+
+l15:
+
+load 19 t0
+load 11 t1
+load v0 t2
+t0 = t1 < t2
+loadaddr 19 s11
+s11[0] = t0
+
+load 19 t0
+s11 = 0
+if t0 == s11 goto l16
+
+load 20 t0
+load 11 t1
+s11 = 4
+t0 = t1 * s11
+loadaddr 20 s11
+s11[0] = t0
+
+load 21 t0
+loadaddr 1 t1
+load 20 t2
+s11 = t1 + t2
+t0 = s11[0]
+loadaddr 21 s11
+s11[0] = t0
+
+load 12 t0
+load 21 t1
+t0 = t1
+loadaddr 12 s11
+s11[0] = t0
+
+load 22 t0
+load 12 t1
+t0 = t1
+loadaddr 22 s11
+s11[0] = t0
+
+load 22 t0
+a0 = t0
+
+call f_putint
+
+load 12 t0
+t0 = 10
+loadaddr 12 s11
+s11[0] = t0
+
+load 23 t0
+load 12 t1
+t0 = t1
+loadaddr 23 s11
+s11[0] = t0
+
+load 23 t0
+a0 = t0
+
+call f_putch
+
+load 24 t0
+load 11 t1
+s11 = 1
+t0 = t1 + s11
+loadaddr 24 s11
+s11[0] = t0
+
+load 11 t0
+load 24 t1
+t0 = t1
+loadaddr 11 s11
+s11[0] = t0
+
+goto l15
+
+l16:
+
+a0 = 0
+return
+
+end f_main
